@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "612695555049",
+    "firebase_url": "https://ratebeer-b213e.firebaseio.com",
+    "project_id": "ratebeer-b213e",
+    "storage_bucket": "ratebeer-b213e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:612695555049:android:31645932c5a61beb",
+        "android_client_info": {
+          "package_name": "org.nativescript.RateBeer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "612695555049-qq3qn7ap3c5thm9v22r2v3ti92q54944.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJeiekuMJjDYIkjWkV8XaNOf3_h76KUn4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "612695555049-qq3qn7ap3c5thm9v22r2v3ti92q54944.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
