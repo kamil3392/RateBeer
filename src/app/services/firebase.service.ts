@@ -33,4 +33,18 @@ export class FirebaseService {
         });
     }
 
+    loginByFacebook(user: User) {
+        return firebase.login({
+            type: firebase.LoginType.FACEBOOK,
+            // Optional
+            facebookOptions: {
+                // defaults to ['public_profile', 'email']
+                scope: [user.publicProfile, user.email]
+            }
+        }).then((result: any) => {
+            return JSON.stringify(result);
+        }, (errorMessage: any) => {
+            alert(errorMessage);
+        });
+    }
 }

@@ -16,7 +16,7 @@
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
                 <Button class="btn btn-primary w-full" text="Register" (tap)="signUp()"></Button>
-                <Label [nsRouterLink]="['/login']" text="Back" class="text-center footnote"></Label>
+                <Label [nsRouterLink]="['/login', false]" text="Back" class="text-center footnote"></Label>
             </StackLayout>
         </StackLayout>
     </ScrollView>

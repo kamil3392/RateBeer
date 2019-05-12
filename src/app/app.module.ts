@@ -8,6 +8,7 @@ import {NativeScriptFormsModule} from "nativescript-angular";
 import {FirebaseService} from "~/app/services/firebase.service";
 import {HomeComponent} from "~/app/components/home/home.component";
 import {RegisterComponent} from "~/app/components/register/register.component";
+import {SelectLoginTypeComponent} from "~/app/components/selectLoginType/select-login-type.component";
 
 @NgModule({
     bootstrap: [
@@ -22,7 +23,8 @@ import {RegisterComponent} from "~/app/components/register/register.component";
         AppComponent,
         LoginComponent,
         HomeComponent,
-        RegisterComponent
+        RegisterComponent,
+        SelectLoginTypeComponent
     ],
     providers: [FirebaseService],
     schemas: [

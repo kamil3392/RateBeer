@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
 
     public logout() {
         ApplicationSettings.remove("authenticated");
-        this.router.navigate(["/login"], { clearHistory: true });
+        this.router.navigate(["/selectLoginType"], { clearHistory: true });
     }
-
 }

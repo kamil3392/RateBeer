@@ -1,9 +1,14 @@
-<ActionBar title="Login"></ActionBar>
+<ActionBar title="{{getTitle()}}"></ActionBar>
 <GridLayout backgroundColor="#CCCCCC">
     <ScrollView>
         <StackLayout margin="10" verticalAlignment="center">
             <StackLayout class="form" padding="15" backgroundColor="#FFFFFF">
-                <StackLayout class="input-field">
+                <StackLayout *ngIf="isFacebookLoginType" class="input-field">
+                    <Label text="Public profile" class="label font-weight-bold m-b-5"></Label>
+                    <TextField class="input" [(ngModel)]="user.publicProfile"></TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                </StackLayout>
+                <StackLayout *ngIf="!isFacebookLoginType" class="input-field">
                     <Label text="Email" class="label font-weight-bold m-b-5"></Label>
                     <TextField class="input" [(ngModel)]="user.email"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
@@ -14,7 +19,8 @@
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
                 <Button class="btn btn-primary w-full" text="Login" (tap)="login()"></Button>
-                <Label [nsRouterLink]="['/register']" text="Not a member? Register here." class="text-center footnote"></Label>
+                <Button class="btn btn-primary w-full" text="Back to select login type" (tap)="backToSelectLoginType()"></Button>
+                <Label *ngIf="!isFacebookLoginType" [nsRouterLink]="['/register']" text="Not a member? Register here." class="text-center footnote"></Label>
             </StackLayout>
         </StackLayout>
     </ScrollView>
