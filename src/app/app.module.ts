@@ -10,6 +10,7 @@ import {HomeComponent} from "~/app/components/home/home.component";
 import {RegisterComponent} from "~/app/components/register/register.component";
 import {SelectLoginTypeComponent} from "~/app/components/selectLoginType/select-login-type.component";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
+import {NativeScriptUISideDrawerModule} from "nativescript-ui-sidedrawer/angular";
 
 @NgModule({
     bootstrap: [
@@ -19,7 +20,8 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
         NativeScriptModule,
         NativeScriptFormsModule,
         AppRoutingModule,
-        NativeScriptHttpClientModule
+        NativeScriptHttpClientModule,
+        NativeScriptUISideDrawerModule
     ],
     declarations: [
         AppComponent,
