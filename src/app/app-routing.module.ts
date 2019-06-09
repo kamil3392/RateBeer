@@ -5,13 +5,15 @@ import {LoginComponent} from "~/app/components/login/login.component";
 import {HomeComponent} from "~/app/components/home/home.component";
 import {RegisterComponent} from "~/app/components/register/register.component";
 import {SelectLoginTypeComponent} from "~/app/components/selectLoginType/select-login-type.component";
+import {JudgeBeerComponent} from "~/app/components/judgeBeer/judgeBeer.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/selectLoginType", pathMatch: "full" },
     { path: "selectLoginType", component: SelectLoginTypeComponent },
     { path: "login/:isFacebook", component: LoginComponent },
     { path: "register", component: RegisterComponent },
-    { path: "home", component: HomeComponent }
+    { path: "home", component: HomeComponent },
+    { path: "judgeBeer", component: JudgeBeerComponent }
 ];
 @NgModule({
     imports: [NativeScriptRouterModule.forRoot(routes)],

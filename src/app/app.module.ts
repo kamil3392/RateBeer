@@ -11,6 +11,7 @@ import {RegisterComponent} from "~/app/components/register/register.component";
 import {SelectLoginTypeComponent} from "~/app/components/selectLoginType/select-login-type.component";
 import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import {NativeScriptUISideDrawerModule} from "nativescript-ui-sidedrawer/angular";
+import { JudgeBeerComponent } from "./components/judgeBeer/judgeBeer.component";
 
 @NgModule({
     bootstrap: [
@@ -28,7 +29,8 @@ import {NativeScriptUISideDrawerModule} from "nativescript-ui-sidedrawer/angular
         LoginComponent,
         HomeComponent,
         RegisterComponent,
-        SelectLoginTypeComponent
+        SelectLoginTypeComponent,
+        JudgeBeerComponent
     ],
     providers: [FirebaseService],
     schemas: [

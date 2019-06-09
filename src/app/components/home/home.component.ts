@@ -44,6 +44,9 @@ export class HomeComponent implements AfterViewInit, OnInit {
     private onGetDataSuccess(res) {
         this.beerData = res.data;
     }
+    public judgeBeer() {
+        this.router.navigate(["/judgeBeer"]);
+    }
 
     public logout() {
         ApplicationSettings.remove("authenticated");
