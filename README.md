@@ -19,3 +19,11 @@ Przed rozpoczęciem prac nad właściwą aplikacją został utworzony [prototyp 
 ### Zarządzanie projektem
 
 Wszelkie prace nad projektem zostały podzielone na zadania dla poszczególnych członków zespołu. W tym celu wykorzystana została platforma Trello. Postęp prac i zadania dostępne są [tutaj](https://trello.com/b/AIDwPMOr/oceniaczpiwa)
+
+### Diagramy
+
+
+![Image of Yaktocat](https://imagizer.imageshack.com/img923/2456/Rz7jvJ.png)
+Diagram przypadków użycia:
+![Image of Yaktocat](https://imagizer.imageshack.com/img922/682/4TjqFG.jpg)
+
