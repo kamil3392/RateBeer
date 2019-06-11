@@ -44,8 +44,9 @@ export class HomeComponent implements AfterViewInit, OnInit {
     private onGetDataSuccess(res) {
         this.beerData = res.data;
     }
-    public judgeBeer() {
-        this.router.navigate(["/judgeBeer"]);
+
+    public navigateAddBeer() {
+        this.router.navigate(["/addBeer"]);
     }
 
     public logout() {
