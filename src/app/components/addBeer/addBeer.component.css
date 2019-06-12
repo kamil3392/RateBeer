@@ -13,10 +13,23 @@
 }
 
 .label {
-    margin-right: 5;
+    margin-right:15;
     vertical-align: center;
+    font-weight: bold;
 }
 
 .input {
     margin-bottom: 10;
+    background: #FFDF8D;
+
+}
+
+.btn-add-beer {
+    text-align: center;
+    font-size: 20;
+    font-weight: bold;
+    color: white;
+    width: 50%;
+    height: 60;
+    background-color: #FFC01F;
 }
