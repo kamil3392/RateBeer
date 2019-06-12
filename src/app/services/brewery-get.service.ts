@@ -14,12 +14,18 @@ export class BreweryGetService {
     constructor(private http: HttpClient) { }
 
     getData() {
-        let headers = this.createRequestHeader();
+        let headers = BreweryGetService.createRequestHeader();
         let params = this.createRequestParams()
         return this.http.get(this.serverUrl, { headers: headers, params: params });
     }
 
-    private createRequestHeader() {
+    getBeerData(name) {
+        let headers = BreweryGetService.createRequestHeader();
+        let params = this.setNameParam(name)
+        return this.http.get(this.serverUrl, { headers: headers, params: params });
+    }
+
+    private static createRequestHeader() {
         return new HttpHeaders({
             "AuthKey": "my-key",
             "AuthToken": "my-token",
@@ -28,6 +34,11 @@ export class BreweryGetService {
     }
 
     private createRequestParams() {
-        return new HttpParams().set('name', "'Murican Pilsner").set('key', '4b6937dc1eeebb88e49c93e08ed81f03');
+        return new HttpParams().set('styleId', '98').set('key', '4b6937dc1eeebb88e49c93e08ed81f03');
     }
+
+    private setNameParam(name) {
+        return new HttpParams().set('name', name).set('key', '4b6937dc1eeebb88e49c93e08ed81f03');
+    }
+
 }

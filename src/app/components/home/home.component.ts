@@ -12,7 +12,7 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
     providers: [BreweryGetService]
 })
 export class HomeComponent implements AfterViewInit, OnInit {
-    public beerData: string;
+    public beerData: Array<any>;
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
@@ -60,5 +60,9 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
     public onCloseDrawerTap() {
         this.drawer.closeDrawer();
+    }
+
+    public navigateBeerDetails(name) {
+        this.router.navigate(["/beerDetails", name]);
     }
 }

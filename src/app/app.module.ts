@@ -13,6 +13,7 @@ import { NativeScriptHttpClientModule } from "nativescript-angular/http-client";
 import {NativeScriptUISideDrawerModule} from "nativescript-ui-sidedrawer/angular";
 import { JudgeBeerComponent } from "./components/judgeBeer/judgeBeer.component";
 import { AddBeerComponent } from "./components/addBeer/addBeer.component";
+import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
 
 @NgModule({
     bootstrap: [
@@ -32,7 +33,8 @@ import { AddBeerComponent } from "./components/addBeer/addBeer.component";
         RegisterComponent,
         SelectLoginTypeComponent,
         JudgeBeerComponent,
-        AddBeerComponent
+        AddBeerComponent,
+        BeerDetailsComponent
     ],
     providers: [FirebaseService],
     schemas: [

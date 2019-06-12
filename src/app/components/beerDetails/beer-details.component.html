@@ -1,0 +1,16 @@
+<ActionBar title="Beer details">
+    <ActionItem text="Menu"></ActionItem>
+</ActionBar>
+<ScrollView>
+    <ListView [items]="beerData" class="list-group">
+        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <StackLayout orientation="horizontal" class="list-group-item">
+                <Label [text]="item.name"></Label>
+                <Label [text]="item.description"></Label>
+                <Label [text]="item.style.category.name"></Label>
+                <Label [text]="item.abv"></Label>
+                <Label [text]="item.ibu"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</ScrollView>

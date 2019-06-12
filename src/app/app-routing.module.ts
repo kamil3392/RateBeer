@@ -7,6 +7,7 @@ import {RegisterComponent} from "~/app/components/register/register.component";
 import {SelectLoginTypeComponent} from "~/app/components/selectLoginType/select-login-type.component";
 import {JudgeBeerComponent} from "~/app/components/judgeBeer/judgeBeer.component";
 import {AddBeerComponent} from "~/app/components/addBeer/addBeer.component";
+import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/selectLoginType", pathMatch: "full" },
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: "register", component: RegisterComponent },
     { path: "home", component: HomeComponent },
     { path: "judgeBeer", component: JudgeBeerComponent },
-    { path: "addBeer", component: AddBeerComponent }
+    { path: "addBeer", component: AddBeerComponent },
+    { path: "beerDetails/:name", component: BeerDetailsComponent }
 ];
 @NgModule({
     imports: [NativeScriptRouterModule.forRoot(routes)],
