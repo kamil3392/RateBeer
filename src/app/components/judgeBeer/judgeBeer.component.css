@@ -1,5 +1,5 @@
 .rating-grid {
-    background-color: #ff275d;
+    background-color: white;
 }
 
 .top-stack {
@@ -16,16 +16,16 @@
 
 .category-title-lbl {
     text-align: center;
-    font-size: 30;
+    font-size: 20;
     font-weight: bold;
-    color: #34204F;
+    color: black;
 }
 
 .rating-slider {
     margin-top: 10;
     margin-bottom: 10;
-    color: pink;
-    background-color: white;
+    color: #FF9900;
+    background-color: #FF9900;
 }
 
 .category-slider-lbl {
@@ -40,4 +40,6 @@
     font-weight: bold;
     color: white;
     width: 50%;
+    height: 60;
+    background-color: #FFC01F;
 }
