@@ -3,7 +3,8 @@
 
 <ScrollView>
     <StackLayout>
-        <GridLayout rows="*, *, *, *, *" columns="80, *" class="form">
+        <GridLayout rows="*, *, *, *, *" columns="80, *" marginTop="120"
+            class="form">
             <Label row="0" col="0" text="Beer:" horizontalAlignment="right"
                 class="label"></Label>
             <TextField row="0" col="1" [(ngModel)]="beerName" hint="beer name"
@@ -18,13 +19,13 @@
                 class="input input-border"></TextField>
             <Label row="3" col="0" text="Abv:" horizontalAlignment="right"
                 class="label"></Label>
-            <TextField row="3" col="1" [(ngModel)]="beerAbv" hint="abv"
-                class="input input-border" keyboardType="number"></TextField>
+            <TextField row="3" col="1" [(ngModel)]="beerAbv" hint="abv" class="input input-border"
+                keyboardType="number"></TextField>
             <Label row="4" col="0" text="Plato:" horizontalAlignment="right"
                 class="label"></Label>
             <TextField row="4" col="1" [(ngModel)]="beerPlato" hint="plato/blg"
                 class="input input-border" keyboardType="number"></TextField>
         </GridLayout>
-        <Button text="Add beer" (tap)="addBeer()" class="btn btn-primary"></Button>
+        <Button text="Add beer" (tap)="addBeer()" class="btn-add-beer"></Button>
     </StackLayout>
 </ScrollView>
