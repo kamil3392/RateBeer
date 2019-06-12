@@ -5,6 +5,8 @@ import { AnimationCurve } from 'tns-core-modules/ui/enums/enums';
 import { Slider } from "tns-core-modules/ui/slider";
 import { Label } from 'tns-core-modules/ui/label/label';
 import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
+import { ActivatedRoute } from "@angular/router";
+
 
 @Component({
     selector: "jb",
@@ -13,27 +15,40 @@ import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
     styleUrls: ['judgeBeer.component.css']
 })
 export class JudgeBeerComponent implements OnInit {
-    onButtonTap(): void {
-        console.log("Button was pressed");
-    }
+    // onButtonTap(): void {
+    //     console.log("Button was pressed");
+    // }
 
     textFieldValue: string = "";
 
+    private sliderAromaValue: number = 0;
+    private sliderAppearanceValue: number = 0;
+    private sliderTasteValue: number = 0;
+    private sliderBitternessValue: number = 0;
+    private sliderMouthfeelValue: number = 0;
+    private totalRating: number = 0;
 
-    sliderAromaValue: number = 0;
-    sliderAppearanceValue: number = 0;
-    sliderTasteValue: number = 0;
-    sliderBitternessValue: number = 0;
-    sliderMouthfeelValue: number = 0;
-    totalRating: number = 0;
+    private beerName: string;
+    private breweryName: string;
+    private beerStyle: string;
+    private beerAbv: string;
+    private beerPlato: string;
 
     @ViewChild("myStack") mySLRef: ElementRef;
 
-    constructor(private _page: Page) {
+    constructor(private _page: Page, private route: ActivatedRoute) {
+        
+        this.route.queryParams.subscribe(params => {
+            this.beerName = params["beerName"],
+            this.breweryName = params["breweryName"],
+            this.beerStyle = params["beerStyle"],
+            this.beerAbv = params["beerAbv"],
+            this.beerPlato = params["beerPlato"]
+        })
     }
 
     ngOnInit(): void {
-        this._page.actionBarHidden = true;
+        this._page.actionBarHidden = false;
     }
 
     public onSliderAromaValueChange(args) {
@@ -113,5 +128,6 @@ export class JudgeBeerComponent implements OnInit {
 
     postBeerReview() {
         // wyslac ocene calkowita oraz wartosci poszczegolnych kategorii do bazy
+        alert(this.beerName)
     }
 }
