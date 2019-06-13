@@ -4,6 +4,7 @@ import { RouterExtensions } from "nativescript-angular/router";
     moduleId: module.id,
     selector: "slt",
     templateUrl: "select-login-type.component.html",
+    styleUrls: ["select-login-type.component.css"]
 })
 export class SelectLoginTypeComponent {
     public constructor(private router: RouterExtensions){}
