@@ -5,6 +5,17 @@ import {User} from '../models/user.model';
 export class FirebaseService {
     constructor(private ngZone: NgZone){}
 
+    checkIn(myCheckIn: any) {
+        firebase.push(
+            "/beers",
+            myCheckIn
+        ).then(
+            function (result) {
+                console.log("created beer key: " + result.key)
+            }
+        )
+    }
+
     register(user: User) {
         return firebase.createUser({
             email: user.email,

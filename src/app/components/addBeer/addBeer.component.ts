@@ -21,6 +21,10 @@ export class AddBeerComponent implements OnInit {
 
     ngOnInit(): void { }
 
+    goHome() {
+        this.router.navigate(["/home"], {clearHistory: true})
+    }
+
     addBeer(): void {
         // basic validation
         // if (!this.beerName || !this.breweryName || !this.beerStyle) {
@@ -28,7 +32,6 @@ export class AddBeerComponent implements OnInit {
         //     return;
         // }
 
-        //pass beer object to next screen
         let navigationExtras: NavigationExtras = {
             queryParams: {
                 "beerName": this.beerName,
@@ -39,6 +42,10 @@ export class AddBeerComponent implements OnInit {
             }
         }
         this.router.navigate(["/judgeBeer"], navigationExtras);
+    }
+
+    public goBack() {
+        this.router.navigate(["/home", false], {clearHistory: true})
     }
 
 }

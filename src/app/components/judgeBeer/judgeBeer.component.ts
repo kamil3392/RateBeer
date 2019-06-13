@@ -6,6 +6,10 @@ import { Slider } from "tns-core-modules/ui/slider";
 import { Label } from 'tns-core-modules/ui/label/label';
 import { StackLayout } from "tns-core-modules/ui/layouts/stack-layout";
 import { ActivatedRoute } from "@angular/router";
+import {FirebaseService} from '../../services/firebase.service';
+import { RouterExtensions } from "nativescript-angular/router";
+import * as geolocation from "nativescript-geolocation";
+import { Accuracy } from "tns-core-modules/ui/enums";
 
 
 @Component({
@@ -34,9 +38,12 @@ export class JudgeBeerComponent implements OnInit {
     private beerAbv: string;
     private beerPlato: string;
 
+    private myCheckIn: any;
+    private myLocation: any;
+
     @ViewChild("myStack") mySLRef: ElementRef;
 
-    constructor(private _page: Page, private route: ActivatedRoute) {
+    constructor(private _page: Page, private route: ActivatedRoute, private firebaseService: FirebaseService, private router: RouterExtensions) {
         
         this.route.queryParams.subscribe(params => {
             this.beerName = params["beerName"],
@@ -45,6 +52,38 @@ export class JudgeBeerComponent implements OnInit {
             this.beerAbv = params["beerAbv"],
             this.beerPlato = params["beerPlato"]
         })
+    }
+
+    postBeerReview() {
+        this.myLocation = geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 20000 })
+        console.log("created beer key: " + this.myLocation)
+        this.myCheckIn = {
+            "beerDetails": {
+              "beerName": this.beerName,
+              "breweryName": this.breweryName,
+              "beerStyle": this.beerStyle,
+              "beerAbv": this.beerAbv,
+              "beerPlato": this.beerPlato
+            },
+            "rating": {
+              "totalRating": this.totalRating,
+              "aroma": this.sliderAromaValue,
+              "appearance": this.sliderAppearanceValue,
+              "taste": this.sliderTasteValue,
+              "bitterness": this.sliderBitternessValue,
+              "mouthfeel": this.sliderMouthfeelValue
+            },
+            "checkInDetails": {
+              "other": this.myLocation,
+              "date": Date.now(),
+              "user": "test",
+            }
+          }
+        this.firebaseService.checkIn(this.myCheckIn)
+    }
+
+    goHome() {
+        this.router.navigate(["/home"], {clearHistory: true})
     }
 
     ngOnInit(): void {
@@ -124,10 +163,5 @@ export class JudgeBeerComponent implements OnInit {
             .catch(e => {
                 console.error(e.message);
             });
-    }
-
-    postBeerReview() {
-        // wyslac ocene calkowita oraz wartosci poszczegolnych kategorii do bazy
-        alert(this.beerName)
     }
 }
