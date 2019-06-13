@@ -4,12 +4,10 @@
     <ScrollView>
         <StackLayout margin="10" verticalAlignment="center">
             <StackLayout class="form" padding="15" backgroundColor="#FFFFFF">
-                <Button class="btn btn-primary w-full" text="EMAIL AND PASSWORD"
-                    backgroundColor="#FFC01F" fontSize="15" fontWeight="bold"
-                    height="60" width="50%" (tap)="loginByLoginAndPassword()"></Button>
-                <Button class="btn btn-primary w-full" text="FACEBOOK"
-                    backgroundColor="#FFC01F" fontSize="15" fontWeight="bold"
-                    height="60" width="50%" (tap)="loginByFacebook()"></Button>
+                <Button class="btn btn-general" text="EMAIL AND PASSWORD" 
+				(tap)="loginByLoginAndPassword()"></Button>
+                <Button class="btn btn-general" text="FACEBOOK"
+				(tap)="loginByFacebook()"></Button>
             </StackLayout>
         </StackLayout>
     </ScrollView>
