@@ -9,6 +9,7 @@ import {RouterExtensions} from "nativescript-angular";
     moduleId: module.id,
     selector: "rr-register",
     templateUrl: "register.component.html",
+    styleUrls: ["register.component.css"]
 })
 export class RegisterComponent {
     isAuthenticating = false;
