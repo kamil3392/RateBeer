@@ -9,6 +9,7 @@ import {ActivatedRoute} from '@angular/router';
 moduleId: module.id,
 selector: "rr-login",
 templateUrl: "login.component.html",
+styleUrls: ["login.component.css"]
 })
 export class LoginComponent implements OnInit {
     isAuthenticating = false;
