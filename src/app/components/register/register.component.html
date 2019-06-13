@@ -15,8 +15,10 @@
                     <TextField secure="true" class="input" [(ngModel)]="user.password"></TextField>
                     <StackLayout class="hr-light"></StackLayout>
                 </StackLayout>
-                <Button class="btn btn-primary w-full" text="Register" (tap)="signUp()"></Button>
-                <Label [nsRouterLink]="['/login', false]" text="Back" class="text-center footnote"></Label>
+                <Button class="btn btn-primary w-full" text="Register"
+                        backgroundColor="#FFC01F" fontSize="15" fontWeight="bold"
+                        height="60" width="50%"(tap)="signUp()"></Button>
+                <Label [nsRouterLink]="['/login', false]" text="Back" text="Back" color="#FFC01F" class="text-center footnote"></Label>
             </StackLayout>
         </StackLayout>
     </ScrollView>
