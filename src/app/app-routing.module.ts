@@ -9,6 +9,7 @@ import {JudgeBeerComponent} from "~/app/components/judgeBeer/judgeBeer.component
 import {AddBeerComponent} from "~/app/components/addBeer/addBeer.component";
 import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
 import { BasicSearchBarComponent } from "~/app/components/searchBeer/basic-search-bar.component";
+import { SearchJudgeComponent } from "./components/searchJudge/searchJudge.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/selectLoginType", pathMatch: "full" },
@@ -19,7 +20,9 @@ const routes: Routes = [
     { path: "judgeBeer", component: JudgeBeerComponent },
     { path: "addBeer", component: AddBeerComponent },
     { path: "beerDetails/:name", component: BeerDetailsComponent },
-    { path: "searchBeer", component: BasicSearchBarComponent }
+    { path: "searchBeer", component: BasicSearchBarComponent },
+    { path: "searchJudge", component: SearchJudgeComponent }
+
 ];
 @NgModule({
     imports: [NativeScriptRouterModule.forRoot(routes)],

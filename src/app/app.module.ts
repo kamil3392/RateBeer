@@ -15,6 +15,7 @@ import { JudgeBeerComponent } from "./components/judgeBeer/judgeBeer.component";
 import { AddBeerComponent } from "./components/addBeer/addBeer.component";
 import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
 import { BasicSearchBarComponent } from "~/app/components/searchBeer/basic-search-bar.component";
+import { SearchJudgeComponent } from "~/app/components/searchJudge/searchJudge.component";
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { BasicSearchBarComponent } from "~/app/components/searchBeer/basic-searc
         JudgeBeerComponent,
         AddBeerComponent,
         BeerDetailsComponent,
-        BasicSearchBarComponent
+        BasicSearchBarComponent,
+        SearchJudgeComponent
     ],
     providers: [FirebaseService],
     schemas: [
