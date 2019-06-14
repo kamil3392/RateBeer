@@ -21,17 +21,14 @@
         </ScrollView>
     </GridLayout>
     <StackLayout tkMainContent>
-        <Label textWrap="true" class="drawerContentText">CONTENT HERE</Label>
+        <ScrollView>
+            <ListView [items]="beerData" class="list-group">
+                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                    <StackLayout orientation="horizontal" class="list-group-item">
+                        <Label [text]="item.name" (tap)="navigateBeerDetails(item.name)"></Label>
+                    </StackLayout>
+                </ng-template>
+            </ListView>
+        </ScrollView>
     </StackLayout>
-
 </RadSideDrawer>
-
-<!-- <ScrollView>
-    <ListView [items]="beerData" class="list-group">
-        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-            <StackLayout orientation="horizontal" class="list-group-item">
-                <Label [text]="item.name" (tap)="navigateBeerDetails(item.name)"></Label>
-            </StackLayout>
-        </ng-template>
-    </ListView>
-</ScrollView> -->
