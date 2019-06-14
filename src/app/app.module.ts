@@ -14,7 +14,7 @@ import {NativeScriptUISideDrawerModule} from "nativescript-ui-sidedrawer/angular
 import { JudgeBeerComponent } from "./components/judgeBeer/judgeBeer.component";
 import { AddBeerComponent } from "./components/addBeer/addBeer.component";
 import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
-import { BasicSearchBarComponent } from "~/app/components/searchBeer/basic-search-bar.component";
+import { SearchBeerComponent } from "~/app/components/searchBeer/searchBeer.component";
 import { SearchJudgeComponent } from "~/app/components/searchJudge/searchJudge.component";
 
 
@@ -38,7 +38,7 @@ import { SearchJudgeComponent } from "~/app/components/searchJudge/searchJudge.c
         JudgeBeerComponent,
         AddBeerComponent,
         BeerDetailsComponent,
-        BasicSearchBarComponent,
+        SearchBeerComponent,
         SearchJudgeComponent
     ],
     providers: [FirebaseService],

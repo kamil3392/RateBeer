@@ -8,7 +8,7 @@ import {SelectLoginTypeComponent} from "~/app/components/selectLoginType/select-
 import {JudgeBeerComponent} from "~/app/components/judgeBeer/judgeBeer.component";
 import {AddBeerComponent} from "~/app/components/addBeer/addBeer.component";
 import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
-import { BasicSearchBarComponent } from "~/app/components/searchBeer/basic-search-bar.component";
+import { SearchBeerComponent } from "~/app/components/searchBeer/searchBeer.component";
 import { SearchJudgeComponent } from "./components/searchJudge/searchJudge.component";
 
 const routes: Routes = [
@@ -20,7 +20,7 @@ const routes: Routes = [
     { path: "judgeBeer", component: JudgeBeerComponent },
     { path: "addBeer", component: AddBeerComponent },
     { path: "beerDetails/:name", component: BeerDetailsComponent },
-    { path: "searchBeer", component: BasicSearchBarComponent },
+    { path: "searchBeer", component: SearchBeerComponent },
     { path: "searchJudge", component: SearchJudgeComponent }
 
 ];
