@@ -1,0 +1,12 @@
+<ActionBar title="Search beer" class="action-bar">
+    <ActionItem text="Menu" (tap)="goHome()" ></ActionItem>
+</ActionBar>
+
+<StackLayout sdkExampleTitle sdkToggleNavButton>
+    <StackLayout>
+        <!-- >> basic-search-bar-html -->
+        <SearchBar class="searchBar" hint="Search hint" [text]="searchPhrase" (textChange)="onTextChanged($event)" (submit)="onSubmit($event)"
+                    style=" color:#a38e5a" textFieldHintColor="lightgray" textFieldBackgroundColor="beige";></SearchBar>
+        <!-- << basic-search-bar-html -->
+    </StackLayout>
+</StackLayout>

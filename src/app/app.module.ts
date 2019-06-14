@@ -14,6 +14,8 @@ import {NativeScriptUISideDrawerModule} from "nativescript-ui-sidedrawer/angular
 import { JudgeBeerComponent } from "./components/judgeBeer/judgeBeer.component";
 import { AddBeerComponent } from "./components/addBeer/addBeer.component";
 import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
+import { BasicSearchBarComponent } from "~/app/components/searchBeer/basic-search-bar.component";
+
 
 @NgModule({
     bootstrap: [
@@ -34,7 +36,8 @@ import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.co
         SelectLoginTypeComponent,
         JudgeBeerComponent,
         AddBeerComponent,
-        BeerDetailsComponent
+        BeerDetailsComponent,
+        BasicSearchBarComponent
     ],
     providers: [FirebaseService],
     schemas: [

@@ -65,4 +65,16 @@ export class HomeComponent implements AfterViewInit, OnInit {
     public navigateBeerDetails(name) {
         this.router.navigate(["/beerDetails", name]);
     }
+
+    public navigateSearchBeer() {
+        this.router.navigate(["/searchBeer"]);
+    }
+
+    public  navigateSearchJudge() {
+        this.router.navigate(["/searchJudge"]);
+    }
+
+
+
+
 }
