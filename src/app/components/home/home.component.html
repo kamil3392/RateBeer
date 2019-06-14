@@ -1,4 +1,4 @@
-<ActionBar title="My Beers">
+<ActionBar title="My Beers" class="action-bar">
     <ActionItem text="Menu" (tap)="openDrawer()"></ActionItem>
 </ActionBar>
 <RadSideDrawer #myDrawer tkExampleTitle tkToggleNavButton>
@@ -9,12 +9,13 @@
         <ScrollView row="1">
             <StackLayout class="sideStackLayout">
                 <!-- by pressing judge beer it should navigate to search beer view -->
-                <Label text="JUDGE BEER" class="sideLabel sideLightOrangeLabel" (tap)="navigateAddBeer()"></Label>
+                <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateAddBeer()"></Label>
                 <Label text="MY PROFILE" class="sideLabel"></Label>
                 <Label text="SEARCH JUDGE" class="sideLabel"></Label>
-                <Label text="SETTINGS" class="sideLabel sideLightOrangeLabel"></Label>
+                <Label text="SEARCH BEER" class="sideLabel"></Label>
+                <Label text="SETTINGS" class="sideLabel"></Label>
                 <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
-                <Label text="Close Menu" color="lightgray" padding="10" style="horizontal-align: center"
+                <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center"
                        (tap)="onCloseDrawerTap()"></Label>
             </StackLayout>
         </ScrollView>
