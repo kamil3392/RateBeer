@@ -1,6 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { NavigationExtras } from "@angular/router";
+import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
+import {RadSideDrawer} from "nativescript-ui-sidedrawer";
+import * as ApplicationSettings from "tns-core-modules/application-settings";
 
 @Component({
     selector: "ab",
@@ -8,14 +11,16 @@ import { NavigationExtras } from "@angular/router";
     templateUrl: "addBeer.component.html",
     styleUrls: ["addBeer.component.css"]
 })
-export class AddBeerComponent implements OnInit {
+export class AddBeerComponent implements OnInit, AfterViewInit {
 
     beerName;
     breweryName;
     beerStyle;
     beerAbv;
     beerPlato;
-
+    @ViewChild(RadSideDrawerComponent)
+    public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
 
     constructor(private router: RouterExtensions) {}
 
@@ -48,4 +53,40 @@ export class AddBeerComponent implements OnInit {
         this.router.navigate(["/home", false], {clearHistory: true})
     }
 
+    ngAfterViewInit(): void {
+        this.drawer = this.drawerComponent.sideDrawer;
+    }
+
+    public openDrawer() {
+        this.drawer.showDrawer();
+    }
+
+    public onCloseDrawerTap() {
+        this.drawer.closeDrawer();
+    }
+
+    public navigateBeerDetails(name) {
+        this.router.navigate(["/beerDetails", name]);
+    }
+
+    public navigateSearchBeer() {
+        this.router.navigate(["/searchBeer"]);
+    }
+
+    public navigateSearchJudge() {
+        this.router.navigate(["/searchJudge"]);
+    }
+
+    public navigateHome() {
+        this.router.navigate(["/home"]);
+    }
+
+    public logout() {
+        ApplicationSettings.remove("authenticated");
+        this.router.navigate(["/selectLoginType"], { clearHistory: true });
+    }
+
+    public navigateJudgeBeer() {
+        this.router.navigate(["/judgeBeer"]);
+    }
 }

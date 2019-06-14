@@ -27,7 +27,6 @@ export class HomeComponent implements AfterViewInit, OnInit {
     }
 
     ngAfterViewInit() {
-        console.dir(this.drawerComponent.sideDrawer);
         this.drawer = this.drawerComponent.sideDrawer;
         // this._changeDetectionRef.detectChanges();
     }
@@ -47,6 +46,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
     public navigateAddBeer() {
         this.router.navigate(["/addBeer"]);
+    }
+
+    public navigateJudgeBeer() {
+        this.router.navigate(["/judgeBeer"]);
     }
 
     public logout() {
@@ -73,8 +76,4 @@ export class HomeComponent implements AfterViewInit, OnInit {
     public  navigateSearchJudge() {
         this.router.navigate(["/searchJudge"]);
     }
-
-
-
-
 }
