@@ -1,16 +1,33 @@
 <ActionBar title="Beer details">
-    <ActionItem text="Menu"></ActionItem>
+        <ActionItem text="Menu" (tap)="openDrawer()"></ActionItem>
 </ActionBar>
-<ScrollView>
-    <ListView [items]="beerData" class="list-group">
-        <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
-            <StackLayout orientation="horizontal" class="list-group-item">
-                <Label [text]="item.name"></Label>
-                <Label [text]="item.description"></Label>
-                <Label [text]="item.style.category.name"></Label>
-                <Label [text]="item.abv"></Label>
-                <Label [text]="item.ibu"></Label>
+<RadSideDrawer #myDrawer tkExampleTitle tkToggleNavButton>
+    <GridLayout tkDrawerContent rows="auto, *" class="sideStackLayout">
+        <StackLayout class="sideTitleStackLayout">
+            <Label text="Navigation Menu"></Label>
+        </StackLayout>
+        <ScrollView row="1">
+            <StackLayout class="sideStackLayout">
+                <Label text="HOME" class="sideLabel" (tap)="navigateHome()"></Label>
+                <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateSearchBeer()"></Label>
+                <Label text="SEARCH JUDGE" class="sideLabel" (tap)="navigateSearchJudge()"></Label>
+                <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
+                <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center"
+                    (tap)="onCloseDrawerTap()"></Label>
             </StackLayout>
-        </ng-template>
-    </ListView>
-</ScrollView>
+        </ScrollView>
+    </GridLayout>
+    <ScrollView tkMainContent>
+        <ListView [items]="beerData" class="list-group">
+            <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <StackLayout orientation="horizontal" class="list-group-item">
+                    <Label [text]="item.name"></Label>
+                    <Label [text]="item.description"></Label>
+                    <Label [text]="item.style.category.name"></Label>
+                    <Label [text]="item.abv"></Label>
+                    <Label [text]="item.ibu"></Label>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+    </ScrollView>
+</RadSideDrawer>

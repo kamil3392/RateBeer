@@ -2,65 +2,80 @@
     <ActionItem text="Menu" (tap)="openDrawer()" ></ActionItem>
 </ActionBar>
 
-<ScrollView>
-    <GridLayout rows="50, * , auto, auto, auto, auto, auto, auto, auto, 50"
-        class="rating-grid">
-
-        <StackLayout row="1" marginTop="50">
-            <Label class="category-title-lbl" text="Aroma"></Label>
-            <Slider class="rating-slider" value="{{ sliderAromaValue }}"
-                minValue="0" maxValue="14" (valueChange)="onSliderAromaValueChange($event)"></Slider>
-            <Label class="category-slider-lbl" text="{{ sliderAromaValue | number}}"
-                (textChange)="letsAnimate($event)"></Label>
+<RadSideDrawer #myDrawer tkExampleTitle tkToggleNavButton>
+    <GridLayout tkDrawerContent rows="auto, *" class="sideStackLayout">
+        <StackLayout class="sideTitleStackLayout">
+            <Label text="Navigation Menu"></Label>
         </StackLayout>
-
-        <StackLayout row="2" marginTop="50">
-            <Label class="category-title-lbl" text="Appereance"></Label>
-            <Slider class="rating-slider" value="{{ sliderAppearanceValue }}"
-                minValue="0" maxValue="6" (valueChange)="onSliderAppearanceValueChange($event)"></Slider>
-            <Label class="category-slider-lbl" text="{{ sliderAppearanceValue | number}}"
-                (textChange)="letsAnimate($event)"></Label>
-        </StackLayout>
-
-        <StackLayout row="3" marginTop="50">
-            <Label class="category-title-lbl" text="Taste"></Label>
-            <Slider class="rating-slider" value="{{ sliderTasteValue }}"
-                minValue="0" maxValue="18" (valueChange)="onSliderTasteValueChange($event)"></Slider>
-            <Label class="category-slider-lbl" text="{{ sliderTasteValue | number}}"
-                (textChange)="letsAnimate($event)"></Label>
-        </StackLayout>
-
-        <StackLayout row="4" marginTop="50">
-            <Label class="category-title-lbl" text="Bitterness"></Label>
-            <Slider class="rating-slider" value="{{ sliderBitternessValue }}"
-                minValue="0" maxValue="6" (valueChange)="onSliderBitternessValueChange($event)"></Slider>
-            <Label class="category-slider-lbl" text="{{ sliderBitternessValue | number}}"
-                (textChange)="letsAnimate($event)"></Label>
-        </StackLayout>
-
-        <StackLayout row="5" marginTop="50">
-            <Label class="category-title-lbl" text="Mouthfeel"></Label>
-            <Slider class="rating-slider" value="{{ sliderMouthfeelValue }}"
-                minValue="0" maxValue="6" (valueChange)="onSliderMouthfeelValueChange($event)"></Slider>
-            <Label class="category-slider-lbl" text="{{ sliderMouthfeelValue | number}}"
-                (textChange)="letsAnimate($event)"></Label>
-        </StackLayout>
-
-        <!-- <StackLayout row="6" marginTop="50">
-            <Label class="category-title-lbl" text="Comment:"></Label>
-            <TextField [(ngModel)]="textFieldValue" hint="Enter comment..."></TextField>
-        </StackLayout> -->
-
-        <StackLayout #myStack row="6" marginTop="50"
-            verticalAlignment="center" class="top-stack">
-            <Label textAlignment="center" color = black text="Total:  ( {{ totalRating | number}} / 50)"></Label>
-        </StackLayout>
-
-        <StackLayout row="7" marginTop="50">
-            <Button class="btn-check-in" text="Check in" (tap)="postBeerReview()"></Button>
-        </StackLayout>
-
-
-
+        <ScrollView row="1">
+            <StackLayout class="sideStackLayout">
+                <Label text="HOME" class="sideLabel" (tap)="navigateHome()"></Label>
+                <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateSearchBeer()"></Label>
+                <Label text="SEARCH JUDGE" class="sideLabel" (tap)="navigateSearchJudge()"></Label>
+                <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
+                <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center"
+                       (tap)="onCloseDrawerTap()"></Label>
+            </StackLayout>
+        </ScrollView>
     </GridLayout>
-</ScrollView>
+    
+    <ScrollView tkMainContent>
+        <GridLayout rows="50, * , auto, auto, auto, auto, auto, auto, auto, 50"
+                class="rating-grid">
+
+                <StackLayout row="1" marginTop="50">
+                    <Label class="category-title-lbl" text="Aroma"></Label>
+                    <Slider class="rating-slider" value="{{ sliderAromaValue }}"
+                        minValue="0" maxValue="14" (valueChange)="onSliderAromaValueChange($event)"></Slider>
+                    <Label class="category-slider-lbl" text="{{ sliderAromaValue | number}}"
+                        (textChange)="letsAnimate($event)"></Label>
+                </StackLayout>
+
+                <StackLayout row="2" marginTop="50">
+                    <Label class="category-title-lbl" text="Appereance"></Label>
+                    <Slider class="rating-slider" value="{{ sliderAppearanceValue }}"
+                        minValue="0" maxValue="6" (valueChange)="onSliderAppearanceValueChange($event)"></Slider>
+                    <Label class="category-slider-lbl" text="{{ sliderAppearanceValue | number}}"
+                        (textChange)="letsAnimate($event)"></Label>
+                </StackLayout>
+
+                <StackLayout row="3" marginTop="50">
+                    <Label class="category-title-lbl" text="Taste"></Label>
+                    <Slider class="rating-slider" value="{{ sliderTasteValue }}"
+                        minValue="0" maxValue="18" (valueChange)="onSliderTasteValueChange($event)"></Slider>
+                    <Label class="category-slider-lbl" text="{{ sliderTasteValue | number}}"
+                        (textChange)="letsAnimate($event)"></Label>
+                </StackLayout>
+
+                <StackLayout row="4" marginTop="50">
+                    <Label class="category-title-lbl" text="Bitterness"></Label>
+                    <Slider class="rating-slider" value="{{ sliderBitternessValue }}"
+                        minValue="0" maxValue="6" (valueChange)="onSliderBitternessValueChange($event)"></Slider>
+                    <Label class="category-slider-lbl" text="{{ sliderBitternessValue | number}}"
+                        (textChange)="letsAnimate($event)"></Label>
+                </StackLayout>
+
+                <StackLayout row="5" marginTop="50">
+                    <Label class="category-title-lbl" text="Mouthfeel"></Label>
+                    <Slider class="rating-slider" value="{{ sliderMouthfeelValue }}"
+                        minValue="0" maxValue="6" (valueChange)="onSliderMouthfeelValueChange($event)"></Slider>
+                    <Label class="category-slider-lbl" text="{{ sliderMouthfeelValue | number}}"
+                        (textChange)="letsAnimate($event)"></Label>
+                </StackLayout>
+
+                <!-- <StackLayout row="6" marginTop="50">
+                    <Label class="category-title-lbl" text="Comment:"></Label>
+                    <TextField [(ngModel)]="textFieldValue" hint="Enter comment..."></TextField>
+                </StackLayout> -->
+
+                <StackLayout #myStack row="6" marginTop="50"
+                    verticalAlignment="center" class="top-stack">
+                    <Label textAlignment="center" color = black text="Total:  ( {{ totalRating | number}} / 50)"></Label>
+                </StackLayout>
+
+                <StackLayout row="7" marginTop="50">
+                    <Button class="btn-check-in" text="Check in" (tap)="postBeerReview()"></Button>
+                </StackLayout>
+        </GridLayout>
+    </ScrollView>
+</RadSideDrawer>

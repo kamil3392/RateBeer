@@ -9,13 +9,10 @@
         </StackLayout>
         <ScrollView row="1">
             <StackLayout class="sideStackLayout">
-                <!-- by pressing judge beer it should navigate to search beer view -->
                 <Label text="HOME" class="sideLabel" (tap)="navigateHome()"></Label>
-                <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateJudgeBeer()"></Label>
-                <Label text="MY PROFILE" class="sideLabel"></Label>
+                <Label text="HOME" class="sideLabel" (tap)="navigateHome()"></Label>
+                <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateSearchBeer()"></Label>
                 <Label text="SEARCH JUDGE" class="sideLabel" (tap)="navigateSearchJudge()"></Label>
-                <Label text="SEARCH BEER" class="sideLabel" (tap)="navigateSearchBeer()"></Label>
-                <Label text="SETTINGS" class="sideLabel"></Label>
                 <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
                 <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center"
                        (tap)="onCloseDrawerTap()"></Label>
@@ -24,15 +21,16 @@
     </GridLayout>
 
     <StackLayout tkMainContent>
-        <SearchBar row="0" hint="Search for a Judge and press enter" (clear)="onClear($event)" (submit)="onSubmit($event)"></SearchBar>
+        <SearchBar row="0" hint="Search for a beer and press enter" (clear)="onClear($event)" (submit)="onSubmit($event)"></SearchBar>
         <ListView row="1" [items]="myItems" class="list-group">
             <ng-template let-item="item">
-            <GridLayout class="item list-group-item">
-            <Label [text]="item.name" class="list-group-item-heading"></Label>
-        </GridLayout>
-    </ng-template>
-</ListView>
+                <GridLayout class="item list-group-item">
+                    <Label [text]="item.name" class="list-group-item-heading"></Label>
+                </GridLayout>
+            </ng-template>
+        </ListView>
     </StackLayout>
+
 </RadSideDrawer>
 
 

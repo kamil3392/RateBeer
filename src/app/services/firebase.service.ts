@@ -1,6 +1,8 @@
 import * as firebase from "nativescript-plugin-firebase";
 import {Injectable, NgZone} from "@angular/core";
 import {User} from '../models/user.model';
+import * as appSettings from "tns-core-modules/application-settings";
+
 @Injectable()
 export class FirebaseService {
     constructor(private ngZone: NgZone){}
@@ -14,6 +16,35 @@ export class FirebaseService {
                 console.log("created beer key: " + result.key)
             }
         )
+    }
+
+    addUser(email: string, publicProfile: any) {
+        firebase.push(
+            "/users",
+            {
+                "mail": email,
+            }
+        ).then(
+            function (result) {
+                console.log("created user key: " + result.key)
+                console.log("public profile: " + publicProfile)
+            }
+        )
+    }
+
+    searchBeer() {
+        let resultFoundFunction = function(result) {
+            alert("xD: " + result.key)
+        }
+        firebase.query(resultFoundFunction,
+            "/users",
+            {
+                singleEvent: true,
+                orderBy: {
+                    type: firebase.QueryOrderByType.KEY
+                }, 
+            }
+            )
     }
 
     register(user: User) {
@@ -38,6 +69,7 @@ export class FirebaseService {
                 password: user.password
             }
         }).then((result: any) => {
+            appSettings.setString("email", user.email)
             return JSON.stringify(result);
         }, (errorMessage: any) => {
             alert(errorMessage);

@@ -1,10 +1,6 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { SearchBar } from "tns-core-modules/ui/search-bar";
-import { ObservableArray } from "tns-core-modules/data/observable-array";
-import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectionStrategy} from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { NavigationExtras } from "@angular/router";
-import { Component, ChangeDetectionStrategy, AfterViewInit } from "@angular/core";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";

@@ -10,6 +10,7 @@ import {FirebaseService} from '../../services/firebase.service';
 import { RouterExtensions } from "nativescript-angular/router";
 import * as geolocation from "nativescript-geolocation";
 import { Accuracy } from "tns-core-modules/ui/enums";
+import * as appSettings from "tns-core-modules/application-settings";
 
 
 @Component({
@@ -19,9 +20,6 @@ import { Accuracy } from "tns-core-modules/ui/enums";
     styleUrls: ['judgeBeer.component.css']
 })
 export class JudgeBeerComponent implements OnInit {
-    // onButtonTap(): void {
-    //     console.log("Button was pressed");
-    // }
 
     textFieldValue: string = "";
 
@@ -76,7 +74,7 @@ export class JudgeBeerComponent implements OnInit {
             "checkInDetails": {
               "other": this.myLocation,
               "date": Date.now(),
-              "user": "test",
+              "user": appSettings.getString("email"),
             }
           }
         this.firebaseService.checkIn(this.myCheckIn)

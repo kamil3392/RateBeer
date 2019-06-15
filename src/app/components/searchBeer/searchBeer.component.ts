@@ -1,12 +1,14 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectionStrategy} from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { NavigationExtras } from "@angular/router";
-import { Component, ChangeDetectionStrategy, AfterViewInit } from "@angular/core";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
 import { ObservableArray } from "tns-core-modules/data/observable-array";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
 import {RadSideDrawer} from "nativescript-ui-sidedrawer";
 import * as ApplicationSettings from "tns-core-modules/application-settings";
+
+import * as dialogs from "tns-core-modules/ui/dialogs";
+import {FirebaseService} from '../../services/firebase.service';
 
 class DataItem {
     constructor(public name: string) { }
@@ -22,8 +24,8 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
-
-    constructor(private router: RouterExtensions) {}
+    dialogOpen = false;
+    constructor(private router: RouterExtensions, private firebaseService: FirebaseService) {}
 
     ngOnInit(): void { }
 
@@ -52,19 +54,39 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     //     this.myItems = new ObservableArray<DataItem>(this.arrayItems);
     // }
 
-    public onSubmit(args) {
-        let searchBar = <SearchBar>args.object;
-        let searchValue = searchBar.text.toLowerCase();
-
-        this.myItems = new ObservableArray<DataItem>();
-        if (searchValue !== "") {
-            for (let i = 0; i < this.arrayItems.length; i++) {
-                if (this.arrayItems[i].name.toLowerCase().indexOf(searchValue) !== -1) {
-                    this.myItems.push(this.arrayItems[i]);
-                }
-            }
-        }
+    private onSubmit() {
+        this.firebaseService.searchBeer()
     }
+
+    // public onSubmit(args) {
+    //     let searchBar = <SearchBar>args.object;
+    //     let searchValue = searchBar.text.toLowerCase();
+    //     let flagBeerNotFound = false
+
+    //     this.myItems = new ObservableArray<DataItem>();
+    //     if (searchValue !== "") {
+    //         for (let i = 0; i < this.arrayItems.length; i++) {
+    //             if (this.arrayItems[i].name.toLowerCase().indexOf(searchValue) !== -1) {
+    //                 this.myItems.push(this.arrayItems[i]);
+    //                 flagBeerNotFound = true
+    //             }
+                
+    //         }
+    //         console.log(flagBeerNotFound)
+    //         if (!flagBeerNotFound) {
+    //             dialogs.confirm({
+    //                 title: "Beer not found",
+    //                 message: "Do you want to add beer?",
+    //                 okButtonText: "Add beer",
+    //                 cancelButtonText: "Keep looking"
+    //             }).then(decision => {
+    //                 if (decision) {
+    //                     this.navigateAddBeer()
+    //                 }
+    //             });
+    //         }
+    //     }
+    // }
 
     public onClear(args) {
         let searchBar = <SearchBar>args.object;
@@ -116,5 +138,9 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
 
     public navigateJudgeBeer() {
         this.router.navigate(["/judgeBeer"]);
+    }
+
+    public navigateAddBeer() {
+        this.router.navigate(["/addBeer"]);
     }
 }
