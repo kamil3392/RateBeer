@@ -31,11 +31,10 @@ export class AddBeerComponent implements OnInit, AfterViewInit {
     }
 
     addBeer(): void {
-        // basic validation
-        // if (!this.beerName || !this.breweryName || !this.beerStyle) {
-        //     alert("Please enter all required fields!");
-        //     return;
-        // }
+        if (!this.beerName || !this.breweryName || !this.beerStyle) {
+            alert("Please enter all required fields!");
+            return;
+        }
 
         let navigationExtras: NavigationExtras = {
             queryParams: {

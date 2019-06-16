@@ -18,7 +18,7 @@ export class FirebaseService {
         )
     }
 
-    addUser(email: string, publicProfile: any) {
+    public addUser(email: string) {
         firebase.push(
             "/users",
             {
@@ -27,22 +27,87 @@ export class FirebaseService {
         ).then(
             function (result) {
                 console.log("created user key: " + result.key)
-                console.log("public profile: " + publicProfile)
             }
         )
     }
 
-    searchBeer() {
+    searchJudge(email) {
+        console.log("Search judge criteria: " + email)
         let resultFoundFunction = function(result) {
-            alert("xD: " + result.key)
+            console.log(JSON.stringify(result))
         }
         firebase.query(resultFoundFunction,
             "/users",
             {
                 singleEvent: true,
                 orderBy: {
-                    type: firebase.QueryOrderByType.KEY
-                }, 
+                    type: firebase.QueryOrderByType.CHILD,
+                    value: 'mail'
+                },
+                ranges: [
+                    {
+                        type: firebase.QueryRangeType.START_AT,
+                        value: email
+                    },
+                    {
+                        type: firebase.QueryRangeType.END_AT,
+                        value: email
+                    }
+                ]
+            }
+            )
+    }
+
+    searchCheckIn(checkInID) {
+        console.log("Search check in criteria: " + checkInID)
+        let resultFoundFunction = function(result) {
+            console.log(JSON.stringify(result))
+        }
+        firebase.query(resultFoundFunction,
+            "/beers",
+            {
+                singleEvent: true,
+                orderBy: {
+                    type: firebase.QueryOrderByType.KEY,
+                },
+                ranges: [
+                    {
+                        type: firebase.QueryRangeType.START_AT,
+                        value: checkInID
+                    },
+                    {
+                        type: firebase.QueryRangeType.END_AT,
+                        value: checkInID
+                    }
+                ]
+            }
+            )
+    }
+
+
+    searchBeers(email) {
+        console.log("Search beers criteria: " + email)
+        let resultFoundFunction = function(result) {
+            console.log(JSON.stringify(result))
+        }
+        firebase.query(resultFoundFunction,
+            "/beers",
+            {
+                singleEvent: true,
+                orderBy: {
+                    type: firebase.QueryOrderByType.CHILD,
+                    value: 'checkInDetails/user'
+                },
+                ranges: [
+                    {
+                        type: firebase.QueryRangeType.START_AT,
+                        value: email
+                    },
+                    {
+                        type: firebase.QueryRangeType.END_AT,
+                        value: email
+                    }
+                ]
             }
             )
     }
@@ -53,6 +118,17 @@ export class FirebaseService {
             password: user.password
         }).then(
             function (result:any) {
+                firebase.push(
+                    "/users",
+                    {
+                        "mail": user.email,
+                        "dateJoined": Date.now()
+                    }
+                ).then(
+                    function (result) {
+                        console.log("created user key: " + result.key)
+                    }
+                )
                 return JSON.stringify(result);
             },
             function (errorMessage:any) {
@@ -70,6 +146,7 @@ export class FirebaseService {
             }
         }).then((result: any) => {
             appSettings.setString("email", user.email)
+            console.log("Logging as: " + user.email)
             return JSON.stringify(result);
         }, (errorMessage: any) => {
             alert(errorMessage);

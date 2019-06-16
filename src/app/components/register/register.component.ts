@@ -26,7 +26,7 @@ export class RegisterComponent {
     signUp() {
         this.firebaseService.register(this.user)
             .then(result => {
-                alert(result)
+                // alert(result)
                 this.isAuthenticating = false;
                 this.router.navigate(["/login", false], {clearHistory: true})
                 //  this.toggleDisplay();

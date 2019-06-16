@@ -29,6 +29,19 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
 
     ngOnInit(): void { }
 
+    public navigateJudgeBeer() {
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "beerName": 0, //wstaw tu zmienna
+                "breweryName": 0, //wstaw tu zmienna
+                "beerStyle": 0, //wstaw tu zmienna
+                "beerAbv": 0, //wstaw tu zmienna
+                "beerPlato": 0 //wstaw tu zmienna
+            }
+        }
+        this.router.navigate(["/judgeBeer"], navigationExtras);
+    }
+
     goHome() {
         this.router.navigate(["/home"], {clearHistory: true})
     }
@@ -54,39 +67,35 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     //     this.myItems = new ObservableArray<DataItem>(this.arrayItems);
     // }
 
-    private onSubmit() {
-        this.firebaseService.searchBeer()
-    }
+    public onSubmit(args) {
+        let searchBar = <SearchBar>args.object;
+        let searchValue = searchBar.text.toLowerCase();
+        let flagBeerNotFound = false
 
-    // public onSubmit(args) {
-    //     let searchBar = <SearchBar>args.object;
-    //     let searchValue = searchBar.text.toLowerCase();
-    //     let flagBeerNotFound = false
-
-    //     this.myItems = new ObservableArray<DataItem>();
-    //     if (searchValue !== "") {
-    //         for (let i = 0; i < this.arrayItems.length; i++) {
-    //             if (this.arrayItems[i].name.toLowerCase().indexOf(searchValue) !== -1) {
-    //                 this.myItems.push(this.arrayItems[i]);
-    //                 flagBeerNotFound = true
-    //             }
+        this.myItems = new ObservableArray<DataItem>();
+        if (searchValue !== "") {
+            for (let i = 0; i < this.arrayItems.length; i++) {
+                if (this.arrayItems[i].name.toLowerCase().indexOf(searchValue) !== -1) {
+                    this.myItems.push(this.arrayItems[i]);
+                    flagBeerNotFound = true
+                }
                 
-    //         }
-    //         console.log(flagBeerNotFound)
-    //         if (!flagBeerNotFound) {
-    //             dialogs.confirm({
-    //                 title: "Beer not found",
-    //                 message: "Do you want to add beer?",
-    //                 okButtonText: "Add beer",
-    //                 cancelButtonText: "Keep looking"
-    //             }).then(decision => {
-    //                 if (decision) {
-    //                     this.navigateAddBeer()
-    //                 }
-    //             });
-    //         }
-    //     }
-    // }
+            }
+            console.log(flagBeerNotFound)
+            if (!flagBeerNotFound) {
+                dialogs.confirm({
+                    title: "Beer not found",
+                    message: "Do you want to add beer?",
+                    okButtonText: "Add beer",
+                    cancelButtonText: "Keep looking"
+                }).then(decision => {
+                    if (decision) {
+                        this.navigateAddBeer()
+                    }
+                });
+            }
+        }
+    }
 
     public onClear(args) {
         let searchBar = <SearchBar>args.object;
@@ -115,10 +124,6 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
         this.drawer.closeDrawer();
     }
 
-    public navigateBeerDetails(name) {
-        this.router.navigate(["/beerDetails", name]);
-    }
-
     public navigateSearchBeer() {
         this.router.navigate(["/searchBeer"]);
     }
@@ -134,10 +139,6 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     public logout() {
         ApplicationSettings.remove("authenticated");
         this.router.navigate(["/selectLoginType"], { clearHistory: true });
-    }
-
-    public navigateJudgeBeer() {
-        this.router.navigate(["/judgeBeer"]);
     }
 
     public navigateAddBeer() {
