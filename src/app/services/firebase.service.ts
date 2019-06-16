@@ -7,6 +7,8 @@ import * as appSettings from "tns-core-modules/application-settings";
 export class FirebaseService {
     constructor(private ngZone: NgZone){}
 
+    beers: any;
+
     checkIn(myCheckIn: any) {
         firebase.push(
             "/beers",
@@ -57,7 +59,7 @@ export class FirebaseService {
             }
             )
     }
-
+s
     searchCheckIn(checkInID) {
         console.log("Search check in criteria: " + checkInID)
         let resultFoundFunction = function(result) {
@@ -88,7 +90,7 @@ export class FirebaseService {
     searchBeers(email) {
         console.log("Search beers criteria: " + email)
         let resultFoundFunction = function(result) {
-            console.log(JSON.stringify(result))
+            appSettings.setString("listCheckIns", JSON.stringify(result))
         }
         firebase.query(resultFoundFunction,
             "/beers",

@@ -4,6 +4,7 @@ import * as ApplicationSettings from "tns-core-modules/application-settings";
 import { BreweryGetService } from "~/app/services/brewery-get.service";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
+import {FirebaseService} from '../../services/firebase.service';
 
 @Component({
     moduleId: module.id,
@@ -12,12 +13,13 @@ import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
     providers: [BreweryGetService]
 })
 export class HomeComponent implements AfterViewInit, OnInit {
+    // public beerData: Array<any>;
     public beerData: Array<any>;
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
 
-    public constructor(private router: RouterExtensions, private myService: BreweryGetService, private _changeDetectionRef: ChangeDetectorRef) { }
+    public constructor(private router: RouterExtensions, private myService: BreweryGetService, private _changeDetectionRef: ChangeDetectorRef, private firebaseService: FirebaseService)  { }
 
     public ngOnInit() {
         if(!ApplicationSettings.getBoolean("authenticated", false)) {
@@ -31,18 +33,27 @@ export class HomeComponent implements AfterViewInit, OnInit {
         // this._changeDetectionRef.detectChanges();
     }
 
-    extractData() {
-        this.myService.getData()
-            .subscribe((result) => {
-                this.onGetDataSuccess(result);
-            }, (error) => {
-                console.log(error);
-            });
+    // extractData() {
+    //     this.myService.getData()
+    //         .subscribe((result) => {
+    //             this.onGetDataSuccess(result);
+    //         }, (error) => {
+    //             console.log(error);
+    //         });
+    // }
+
+    private extractData() {
+        this.firebaseService.searchBeers(ApplicationSettings.getString("email"))
+        
+    let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"))
+    // alert(JSON.stringify(obj.value))
+    this.beerData = obj.value
+    alert(JSON.stringify(this.beerData))
     }
 
-    private onGetDataSuccess(res) {
-        this.beerData = res.data;
-    }
+    // private onGetDataSuccess(res) {
+    //     this.beerData = res.data;
+    // }
 
     public navigateAddBeer() {
         this.router.navigate(["/addBeer"]);

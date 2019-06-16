@@ -20,7 +20,7 @@
     <StackLayout tkMainContent>
         <ScrollView>
             <ListView [items]="beerData" class="list-group">
-                <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
+                <ng-template let-item="JSON.stringify(item)" let-i="index" let-odd="odd" let-even="even">
                     <StackLayout orientation="horizontal" class="list-group-item">
                         <Label [text]="item.name" (tap)="navigateBeerDetails(item.name)"></Label>
                     </StackLayout>
