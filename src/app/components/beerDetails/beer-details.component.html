@@ -17,7 +17,7 @@
             </StackLayout>
         </ScrollView>
     </GridLayout>
-    <ScrollView tkMainContent>
+    <!--<ScrollView tkMainContent>
         <ListView [items]="beerData" class="list-group">
             <ng-template let-item="item" let-i="index" let-odd="odd" let-even="even">
                 <StackLayout orientation="horizontal" class="list-group-item">
@@ -29,5 +29,43 @@
                 </StackLayout>
             </ng-template>
         </ListView>
-    </ScrollView>
+    </ScrollView>-->
+        
+    <ScrollView tkMainContent>
+    <StackLayout>
+        <GridLayout rows="*, *" columns="200, *" marginTop="50"
+            class="form">
+
+            <Label row="0" col="0" class="label-category" text="Beer name"></Label>
+            <Label row="0" col="1" class="label-value" text="x"></Label>
+
+            <Label row="1" col="0" class="label-category" text="Brewery name"></Label>
+            <Label row="1" col="1" class="label-value" text="x"></Label>
+
+        </GridLayout>
+
+        <GridLayout rows="*, *, *, *, *" columns="200, *" marginTop="50"
+            class="form">
+
+            <Label row="0" col="0" class="label-category" text="Aroma"></Label>
+            <Label row="0" col="1" class="label-value" text="x"></Label>
+
+            <Label row="1" col="0" class="label-category" text="Appereance"></Label>
+            <Label row="1" col="1" class="label-value" text="x"></Label>
+
+            <Label row="2" col="0" class="label-category" text="Taste"></Label>
+            <Label row="2" col="1" class="label-value" text="x"></Label>
+
+            <Label row="3" col="0" class="label-category" text="Bitternes"></Label>
+            <Label row="3" col="1" class="label-value" text="x"></Label>
+
+            <Label row="4" col="0" class="label-category" text="Mouthfeel"></Label>
+            <Label row="4" col="1" class="label-value" text="x"></Label>
+
+        </GridLayout>
+
+        <Button text="Back" (tap)="onEmailSend($event)" class="btn btn-general"></Button>
+    </StackLayout>
+</ScrollView>    
+        
 </RadSideDrawer>
