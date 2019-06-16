@@ -1,0 +1,29 @@
+.label-category {
+    text-align: center;
+    font-size: 20;
+    color: #FF6F00;
+    margin-bottom: 10;
+    margin-top: 10;
+    margin-left: 30;
+    
+}
+
+.label-value {
+    text-align: center;
+    font-size: 20;
+    color: black;
+    margin-bottom: 10;
+    margin-top: 10;
+    margin-right: 30;
+}
+
+.btn-general {
+    text-align: center;
+    font-size: 20;
+    font-weight: bold;
+    color: white;
+    width: 50%;
+    height: 60;
+    background-color: #FFC01F;
+    margin-top: 30;
+}
