@@ -11,21 +11,25 @@
                 <Label text="HOME" class="sideLabel" (tap)="navigateHome()"></Label>
                 <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateSearchBeer()"></Label>
                 <Label text="SEARCH JUDGE" class="sideLabel" (tap)="navigateSearchJudge()"></Label>
+                <Label text="ADD BEER" class="sideLabel" (tap)="navigateAddBeer()"></Label>
                 <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
                 <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center"
                        (tap)="onCloseDrawerTap()"></Label>
             </StackLayout>
         </ScrollView>
     </GridLayout>
-    <StackLayout tkMainContent>
-        <ScrollView>
-            <ListView [items]="beerData" class="list-group">
-                <ng-template let-item="JSON.stringify(item)" let-i="index" let-odd="odd" let-even="even">
-                    <StackLayout orientation="horizontal" class="list-group-item">
-                        <Label [text]="item.name" (tap)="navigateBeerDetails(item.name)"></Label>
-                    </StackLayout>
-                </ng-template>
-            </ListView>
-        </ScrollView>
-    </StackLayout>
 </RadSideDrawer>
+
+<ScrollView>
+    <StackLayout>
+
+        <StackLayout width="100%" *ngFor="let item of beerData">
+            <CardView class="studentCard" margin="2" elevation="10" radius="1">
+                <GridLayout rows="auto, auto, auto" columns="auto, auto, *">
+                    <Label [text]="item.beerDetails.beerName" textWrap="true" row="2" colSpan="1" ></Label>
+                </GridLayout>
+            </CardView>
+        </StackLayout>
+
+    </StackLayout>
+</ScrollView>

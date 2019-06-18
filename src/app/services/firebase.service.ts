@@ -59,7 +59,7 @@ export class FirebaseService {
             }
             )
     }
-s
+
     searchCheckIn(checkInID) {
         console.log("Search check in criteria: " + checkInID)
         let resultFoundFunction = function(result) {

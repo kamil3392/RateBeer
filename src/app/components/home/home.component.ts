@@ -13,7 +13,6 @@ import {FirebaseService} from '../../services/firebase.service';
     providers: [BreweryGetService]
 })
 export class HomeComponent implements AfterViewInit, OnInit {
-    // public beerData: Array<any>;
     public beerData: Array<any>;
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;
@@ -44,11 +43,11 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
     private extractData() {
         this.firebaseService.searchBeers(ApplicationSettings.getString("email"))
-        
+
     let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"))
-    // alert(JSON.stringify(obj.value))
-    this.beerData = obj.value
-    alert(JSON.stringify(this.beerData))
+
+    this.beerData = Object.keys(obj.value).map(e=>obj.value[e])
+        console.log(this.beerData);
     }
 
     // private onGetDataSuccess(res) {
