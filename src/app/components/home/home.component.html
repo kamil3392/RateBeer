@@ -25,8 +25,8 @@
 
         <StackLayout width="100%" *ngFor="let item of beerData">
             <CardView class="studentCard" margin="2" elevation="10" radius="1">
-                    <Label [text]="'Name: ' + item.beerDetails.beerName" textWrap="true"  ></Label>
-                    <Label [text]="'Brewery: ' + item.beerDetails.breweryName" textWrap="true" ></Label>
+                    <Label [text]="'Name: ' + item.beerDetails.beerName" textWrap="true" (tap)="navigateBeerDetails(item.beerDetails.beerName)" ></Label>
+                    <Label [text]="'Brewery: ' + item.beerDetails.breweryName" textWrap="true"(tap)="navigateBeerDetails(item.beerDetails.beerName)" ></Label>
                     <Label [text]="'------------'" textWrap="true" ></Label>
             </CardView>
         </StackLayout>

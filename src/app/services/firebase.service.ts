@@ -114,6 +114,32 @@ export class FirebaseService {
             )
     }
 
+    getBeer(name) {
+        let resultFoundFunction = function(result) {
+            appSettings.setString("beerDetails", JSON.stringify(result))
+        }
+        firebase.query(resultFoundFunction,
+            "/beers",
+            {
+                singleEvent: true,
+                orderBy: {
+                    type: firebase.QueryOrderByType.CHILD,
+                    value: 'beerDetails/beerName'
+                },
+                ranges: [
+                    {
+                        type: firebase.QueryRangeType.START_AT,
+                        value: name
+                    },
+                    {
+                        type: firebase.QueryRangeType.END_AT,
+                        value: name
+                    }
+                ]
+            }
+        )
+    }
+
     register(user: User) {
         return firebase.createUser({
             email: user.email,

@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
 import {RadSideDrawer} from "nativescript-ui-sidedrawer";
 import * as ApplicationSettings from "tns-core-modules/application-settings";
+import {FirebaseService} from "~/app/services/firebase.service";
 
 
 @Component({
@@ -22,7 +23,7 @@ export class BeerDetailsComponent implements OnInit {
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
 
-    public constructor(private router: RouterExtensions, private myService: BreweryGetService, private route: ActivatedRoute) {
+    public constructor(private router: RouterExtensions, private firebaseService: FirebaseService, private route: ActivatedRoute) {
         this.sub = this.route.params.subscribe(params => {
             this.beerName = params['name'];
         });
@@ -33,17 +34,10 @@ export class BeerDetailsComponent implements OnInit {
     }
 
     getBeerByName(name) {
-        this.myService.getBeerData(name)
-            .subscribe((result) => {
-                this.onGetDataSuccess(result);
-            }, (error) => {
-                console.log(error);
-            });
-    }
+        this.firebaseService.getBeer(name)
 
-    private onGetDataSuccess(res) {
-        this.beerData = res.data;
-        console.log(this.beerData);
+        let obj = JSON.parse(ApplicationSettings.getString("beerDetails"))
+        this.beerData = Object.keys(obj.children).map(e=>obj.children[e])
     }
 
     ngAfterViewInit(): void {
