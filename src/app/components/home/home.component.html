@@ -25,11 +25,10 @@
 
         <StackLayout width="100%" *ngFor="let item of beerData">
             <CardView class="studentCard" margin="2" elevation="10" radius="1">
-                <GridLayout rows="auto, auto, auto" columns="auto, auto, *">
-                    <Label [text]="item.beerDetails.beerName" textWrap="true" row="2" colSpan="1" ></Label>
-                </GridLayout>
+                    <Label [text]="'Name: ' + item.beerDetails.beerName" textWrap="true"  ></Label>
+                    <Label [text]="'Brewery: ' + item.beerDetails.breweryName" textWrap="true" ></Label>
+                    <Label [text]="'------------'" textWrap="true" ></Label>
             </CardView>
         </StackLayout>
-
     </StackLayout>
 </ScrollView>
