@@ -17,6 +17,7 @@ import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.co
 import { SearchBeerComponent } from "~/app/components/searchBeer/searchBeer.component";
 import { SearchJudgeComponent } from "~/app/components/searchJudge/searchJudge.component";
 import { TakePhotoComponent } from "~/app/components/takePhoto/takePhoto.component";
+import { MyProfile } from "~/app/components/myProfile/myProfile.component";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { TakePhotoComponent } from "~/app/components/takePhoto/takePhoto.compone
         BeerDetailsComponent,
         SearchBeerComponent,
         SearchJudgeComponent,
-        TakePhotoComponent
+        TakePhotoComponent,
+        MyProfile
     ],
     providers: [FirebaseService],
     schemas: [
