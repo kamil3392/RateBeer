@@ -9,29 +9,30 @@
         <ScrollView row="1">
             <StackLayout class="sideStackLayout">
                 <Label text="HOME" class="sideLabel" (tap)="navigateHome()"></Label>
-                <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateSearchBeer()"></Label>
+                <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateTakePhoto()"></Label>
                 <Label text="SEARCH JUDGE" class="sideLabel" (tap)="navigateSearchJudge()"></Label>
-                <Label text="ADD BEER" class="sideLabel" (tap)="navigateAddBeer()"></Label>
                 <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
                 <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center"
                     (tap)="onCloseDrawerTap()"></Label>
             </StackLayout>
         </ScrollView>
     </GridLayout>
-<!-- </RadSideDrawer> -->
 
     <ScrollView tkMainContent>
-        <StackLayout>
-            <StackLayout width="100%" *ngFor="let item of beerData">
+        <StackLayout backgroundColor="#CCCCCC">
+            <StackLayout width="90%" *ngFor="let item of beerData">
 
-                <GridLayout rows="*, *" columns="200, *" marginTop="50" marginBottom="20" class="form"
-                (tap)="navigateBeerDetails(item.beerDetails.beerName)"> 
+                <GridLayout rows="*, *, *" columns="200, *" class="form-general" (tap)="navigateBeerDetails(item.beerDetails.beerName)"> 
 
-                    <Label row="0" col="0" class="label-category" text="Beer:"></Label>
+                    <Label row="0" col="0" class="label-category" text="Beer"></Label>
                     <Label row="0" col="1" class="label-value" textWrap="true" [text]=item.beerDetails.beerName></Label>
                         
-                    <Label row="1" col="0" class="label-category" text="Brewery:"></Label>
+                    <Label row="1" col="0" class="label-category" text="Brewery"></Label>
                     <Label row="1" col="1" class="label-value" textWrap="true" [text]=item.beerDetails.breweryName></Label>
+
+                    <Label row="2" col="0" class="label-category" text="Score"></Label>
+                    <Label row="2" col="1" class="label-value" textWrap="true" [text]=item.rating.totalRating></Label>
+
                 </GridLayout>
 
             </StackLayout>

@@ -1,4 +1,14 @@
 Image {
     border-width: 10;
-    border-color: red;
+    border-color: #FFC01F;
+}
+
+.btn-general {
+    text-align: center;
+    font-size: 15;
+    font-weight: bold;
+    color: white;
+    width: 50%;
+    height: 60;
+    background-color: #FFC01F;
 }

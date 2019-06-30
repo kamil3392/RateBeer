@@ -60,6 +60,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
         this.router.navigate(["/addBeer"]);
     }
 
+    public navigateTakePhoto() {
+        this.router.navigate(["/takePhoto"]);
+    }
+
     public navigateHome() {
         this.router.navigate(["/home"]);
     }
