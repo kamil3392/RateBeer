@@ -12,12 +12,6 @@
     margin: 20;
 }
 
-.label {
-    margin-right:15;
-    vertical-align: center;
-    font-weight: bold;
-}
-
 .input {
     margin-bottom: 10;
     background: #FFDF8D;
@@ -32,4 +26,12 @@
     width: 50%;
     height: 60;
     background-color: #FFC01F;
+}
+
+.label-category {
+    text-align: center;
+    font-size: 18;
+    color: #FF6F00;
+    font-weight: bold;
+    margin: 8;
 }

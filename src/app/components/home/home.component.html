@@ -22,7 +22,7 @@
         <StackLayout backgroundColor="#CCCCCC">
             <StackLayout width="90%" *ngFor="let item of beerData">
 
-                <GridLayout rows="*, *, *" columns="200, *" class="form-general" (tap)="navigateBeerDetails(item.beerDetails.beerName)"> 
+                <GridLayout rows="*, *, *" columns="*, *" class="form-general" (tap)="navigateBeerDetails(item.beerDetails.beerName)"> 
 
                     <Label row="0" col="0" class="label-category" text="Beer"></Label>
                     <Label row="0" col="1" class="label-value" textWrap="true" [text]=item.beerDetails.beerName></Label>

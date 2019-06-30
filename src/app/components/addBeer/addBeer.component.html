@@ -22,26 +22,21 @@
     <StackLayout tkMainContent>
         <ScrollView>
             <StackLayout>
-                <GridLayout rows="*, *, *, *, *" columns="80, *" marginTop="120"
+                <GridLayout rows="*, *, *, *, *" columns="*, *" marginTop="120"
                     class="form">
-                    <Label row="0" col="0" text="Beer:" horizontalAlignment="right"
-                        class="label"></Label>
+                    <Label row="0" col="0" text="Beer:" class="label-category"></Label>
                     <TextField row="0" col="1" [(ngModel)]="beerName" hint="beer name"
                         class="input input-border"></TextField>
-                    <Label row="1" col="0" text="Brewery:" horizontalAlignment="right"
-                        class="label"></Label>
+                    <Label row="1" col="0" text="Brewery:" class="label-category"></Label>
                     <TextField row="1" col="1" [(ngModel)]="breweryName" hint="brewery name"
                         class="input input-border"></TextField>
-                    <Label row="2" col="0" text="Style:" horizontalAlignment="right"
-                        class="label"></Label>
+                    <Label row="2" col="0" text="Style:" class="label-category"></Label>
                     <TextField row="2" col="1" [(ngModel)]="beerStyle" hint="beer style"
                         class="input input-border"></TextField>
-                    <Label row="3" col="0" text="Abv:" horizontalAlignment="right"
-                        class="label"></Label>
+                    <Label row="3" col="0" text="Abv:" class="label-category"></Label>
                     <TextField row="3" col="1" [(ngModel)]="beerAbv" hint="abv" class="input input-border"
                         keyboardType="number"></TextField>
-                    <Label row="4" col="0" text="Plato:" horizontalAlignment="right"
-                        class="label"></Label>
+                    <Label row="4" col="0" text="Plato:" class="label-category"></Label>
                     <TextField row="4" col="1" [(ngModel)]="beerPlato" hint="plato/blg"
                         class="input input-border" keyboardType="number"></TextField>
                 </GridLayout>
