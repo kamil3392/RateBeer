@@ -18,33 +18,23 @@
             </StackLayout>
         </ScrollView>
     </GridLayout>
+<!-- </RadSideDrawer> -->
+
+    <ScrollView tkMainContent>
+        <StackLayout>
+            <StackLayout width="100%" *ngFor="let item of beerData">
+
+                <GridLayout rows="*, *" columns="200, *" marginTop="50" marginBottom="20" class="form"
+                (tap)="navigateBeerDetails(item.beerDetails.beerName)"> 
+
+                    <Label row="0" col="0" class="label-category" text="Beer:"></Label>
+                    <Label row="0" col="1" class="label-value" textWrap="true" [text]=item.beerDetails.beerName></Label>
+                        
+                    <Label row="1" col="0" class="label-category" text="Brewery:"></Label>
+                    <Label row="1" col="1" class="label-value" textWrap="true" [text]=item.beerDetails.breweryName></Label>
+                </GridLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </RadSideDrawer>
-
-<ScrollView>
-    <StackLayout>
-        <StackLayout width="100%" *ngFor="let item of beerData">
-
-            <GridLayout rows="*, *" columns="200, *" marginTop="50" marginBottom="20" class="form"
-            (tap)="navigateBeerDetails(item.beerDetails.beerName)"> 
-
-                <Label row="0" col="0" class="label-category" text="Beer:"></Label>
-                <Label row="0" col="1" class="label-value" textWrap="true" [text]=item.beerDetails.beerName></Label>
-                    
-                <Label row="1" col="0" class="label-category" text="Brewery:"></Label>
-                <Label row="1" col="1" class="label-value" textWrap="true" [text]=item.beerDetails.breweryName></Label>
-            </GridLayout>
-
-        </StackLayout>
-     </StackLayout>
-</ScrollView>
-<!-- 
-<ScrollView>
-    <StackLayout>
-        <StackLayout width="100%" *ngFor="let item of beerData">
-            <CardView margin="2" elevation="10" radius="1">
-                <Label class="label-category" [text]="'Beer: ' + item.beerDetails.beerName" textWrap = "true" (tap) = "navigateBeerDetails(item.beerDetails.beerName)"></Label>
-                <Label class="label-category" [text]="'Brewery: ' + item.beerDetails.breweryName" textWrap = "true" (tap) = "navigateBeerDetails(item.beerDetails.beerName)"></Label>
-            </CardView>
-        </StackLayout>
-    </StackLayout>
-</ScrollView> -->
