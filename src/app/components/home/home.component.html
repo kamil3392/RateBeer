@@ -14,21 +14,25 @@
                 <Label text="ADD BEER" class="sideLabel" (tap)="navigateAddBeer()"></Label>
                 <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
                 <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center"
-                       (tap)="onCloseDrawerTap()"></Label>
+                    (tap)="onCloseDrawerTap()"></Label>
             </StackLayout>
         </ScrollView>
     </GridLayout>
 </RadSideDrawer>
 
 <ScrollView>
-    <StackLayout>
+    <StackLayout width="100%" *ngFor="let item of beerData">
 
-        <StackLayout width="100%" *ngFor="let item of beerData">
-            <CardView class="studentCard" margin="2" elevation="10" radius="1">
-                    <Label [text]="'Name: ' + item.beerDetails.beerName" textWrap="true" (tap)="navigateBeerDetails(item.beerDetails.beerName)" ></Label>
-                    <Label [text]="'Brewery: ' + item.beerDetails.breweryName" textWrap="true"(tap)="navigateBeerDetails(item.beerDetails.beerName)" ></Label>
-                    <Label [text]="'------------'" textWrap="true" ></Label>
-            </CardView>
-        </StackLayout>
+        <GridLayout rows="*, *" columns="200, *" marginTop="50" class="form"
+            (tap)="navigateBeerDetails(item.beerDetails.beerName)">
+
+            <Label row="0" col="0" class="label-category" text="Beer:"></Label>
+            <Label row="0" col="1" class="label-value" text=item.beerDetails.beerName
+                textWrap="true"></Label>
+            <Label row="1" col="0" class="label-category" text="Brewery:"></Label>
+            <Label row="1" col="1" class="label-value" text=item.beerDetails.breweryName
+                textWrap="true"> </Label>
+        </GridLayout>
+
     </StackLayout>
 </ScrollView>
