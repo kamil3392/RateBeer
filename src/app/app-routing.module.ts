@@ -10,6 +10,7 @@ import {AddBeerComponent} from "~/app/components/addBeer/addBeer.component";
 import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
 import { SearchBeerComponent } from "~/app/components/searchBeer/searchBeer.component";
 import { SearchJudgeComponent } from "./components/searchJudge/searchJudge.component";
+import { TakePhotoComponent } from "./components/searchJudge/searchJudge.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/selectLoginType", pathMatch: "full" },
@@ -21,7 +22,8 @@ const routes: Routes = [
     { path: "addBeer", component: AddBeerComponent },
     { path: "beerDetails/:name", component: BeerDetailsComponent },
     { path: "searchBeer", component: SearchBeerComponent },
-    { path: "searchJudge", component: SearchJudgeComponent }
+    { path: "searchJudge", component: SearchJudgeComponent },
+    { path: "takePhoto", component: TakePhotoComponent }
 
 ];
 @NgModule({

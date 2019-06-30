@@ -12,7 +12,8 @@ import {FirebaseService} from "~/app/services/firebase.service";
     moduleId: module.id,
     selector: "RR-secure",
     templateUrl: "beer-details.component.html",
-    providers: [BreweryGetService]
+    providers: [BreweryGetService],
+    styleUrls: ['beer-details.component.css']
 })
 export class BeerDetailsComponent implements OnInit {
     public beerData: Array<any>;

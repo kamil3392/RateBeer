@@ -1,0 +1,12 @@
+<ActionBar title="Take photo" class="action-bar">
+</ActionBar>
+
+<GridLayout rows="*, auto">
+    <Image row="0" [src]="cameraImage" stretch="fill" margin="10"></Image>
+    <StackLayout orientation="horizontal" row="1" padding="10">
+        <Button text="Take Picture" (tap)="onTakePictureTap($event)" row="2"
+            padding="10"></Button>
+        <Button text="Continue" (tap)="onContinueTap($event)" row="2"
+            padding="10"></Button>
+    </StackLayout>
+</GridLayout>

@@ -29,6 +29,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
+        // this.extractData();
         // this._changeDetectionRef.detectChanges();
     }
 

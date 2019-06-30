@@ -11,6 +11,10 @@ import { RouterExtensions } from "nativescript-angular/router";
 import * as geolocation from "nativescript-geolocation";
 import { Accuracy } from "tns-core-modules/ui/enums";
 import * as appSettings from "tns-core-modules/application-settings";
+import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
+import {RadSideDrawer} from "nativescript-ui-sidedrawer";
+import * as ApplicationSettings from "tns-core-modules/application-settings";
+import * as dialogs from "tns-core-modules/ui/dialogs";
 
 
 @Component({
@@ -39,6 +43,10 @@ export class JudgeBeerComponent implements OnInit {
     private myCheckIn: any;
     private myLocation: any;
 
+    @ViewChild(RadSideDrawerComponent)
+    public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
+
     @ViewChild("myStack") mySLRef: ElementRef;
 
     constructor(private _page: Page, private route: ActivatedRoute, private firebaseService: FirebaseService, private router: RouterExtensions) {
@@ -52,9 +60,13 @@ export class JudgeBeerComponent implements OnInit {
         })
     }
 
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+    }
+
     postBeerReview() {
-        this.myLocation = geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 20000 })
-        console.log("created beer key: " + this.myLocation)
+        // this.myLocation = geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 20000 })
+        // console.log("created beer key: " + this.myLocation)
         this.myCheckIn = {
             "beerDetails": {
               "beerName": this.beerName,
@@ -78,10 +90,54 @@ export class JudgeBeerComponent implements OnInit {
             }
           }
         this.firebaseService.checkIn(this.myCheckIn)
+
+        dialogs.confirm({
+            title: "Rating posted",
+            // message: "Do you want to add beer?",
+            okButtonText: "OK",
+        }).then(decision => {
+            if (decision) {
+                this.goHome()
+            }
+        });
     }
 
     goHome() {
-        this.router.navigate(["/home"], {clearHistory: true})
+        // this.router.navigate(["/home"], {clearHistory: true})
+        this.router.navigate(["/home"])
+    }
+
+    public openDrawer() {
+        this.drawer.showDrawer();
+    }
+
+    public onCloseDrawerTap() {
+        this.drawer.closeDrawer();
+    }
+
+    public navigateBeerDetails(name) {
+        this.router.navigate(["/beerDetails", name]);
+    }
+
+    public navigateSearchBeer() {
+        this.router.navigate(["/searchBeer"]);
+    }
+
+    public navigateSearchJudge() {
+        this.router.navigate(["/searchJudge"]);
+    }
+
+    public navigateHome() {
+        this.router.navigate(["/home"]);
+    }
+
+    public logout() {
+        ApplicationSettings.remove("authenticated");
+        this.router.navigate(["/selectLoginType"], { clearHistory: true });
+    }
+
+    public navigateJudgeBeer() {
+        this.router.navigate(["/judgeBeer"]);
     }
 
     ngOnInit(): void {
