@@ -10,7 +10,7 @@ import {AddBeerComponent} from "~/app/components/addBeer/addBeer.component";
 import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
 import { SearchBeerComponent } from "~/app/components/searchBeer/searchBeer.component";
 import { SearchJudgeComponent } from "./components/searchJudge/searchJudge.component";
-import { TakePhotoComponent } from "./components/searchJudge/searchJudge.component";
+import { TakePhotoComponent } from "./components/takePhoto/takePhoto.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/selectLoginType", pathMatch: "full" },

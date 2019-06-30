@@ -107,6 +107,10 @@ export class JudgeBeerComponent implements OnInit {
         this.router.navigate(["/home"])
     }
 
+    goTakePhoto() {
+        this.router.navigate(["/takePhoto"])
+    }
+
     public openDrawer() {
         this.drawer.showDrawer();
     }

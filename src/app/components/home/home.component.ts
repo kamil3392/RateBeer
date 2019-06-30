@@ -10,7 +10,8 @@ import {FirebaseService} from '../../services/firebase.service';
     moduleId: module.id,
     selector: "RR-secure",
     templateUrl: "home.component.html",
-    providers: [BreweryGetService]
+    providers: [BreweryGetService],
+    styleUrls: ['home.component.css']
 })
 export class HomeComponent implements AfterViewInit, OnInit {
     public beerData: Array<any>;
