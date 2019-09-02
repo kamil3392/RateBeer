@@ -79,7 +79,7 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
                     this.myItems.push(this.arrayItems[i]);
                     flagBeerNotFound = true
                 }
-                
+
             }
             console.log(flagBeerNotFound)
             if (!flagBeerNotFound) {
@@ -124,8 +124,8 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
         this.drawer.closeDrawer();
     }
 
-    public navigateSearchBeer() {
-        this.router.navigate(["/searchBeer"]);
+    public navigateMyProfile() {
+        this.router.navigate(["/myProfile"]);
     }
 
     public navigateSearchJudge() {

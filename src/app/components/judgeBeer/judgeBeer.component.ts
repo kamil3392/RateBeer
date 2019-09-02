@@ -50,7 +50,7 @@ export class JudgeBeerComponent implements OnInit {
     @ViewChild("myStack") mySLRef: ElementRef;
 
     constructor(private _page: Page, private route: ActivatedRoute, private firebaseService: FirebaseService, private router: RouterExtensions) {
-        
+
         this.route.queryParams.subscribe(params => {
             this.beerName = params["beerName"],
             this.breweryName = params["breweryName"],
@@ -142,6 +142,10 @@ export class JudgeBeerComponent implements OnInit {
 
     public navigateJudgeBeer() {
         this.router.navigate(["/judgeBeer"]);
+    }
+
+    public navigateMyProfile() {
+        this.router.navigate(["/myProfile"]);
     }
 
     ngOnInit(): void {

@@ -30,7 +30,7 @@ export class BeerDetailsComponent implements OnInit {
         });
     }
 
-    ngOnInit(): void { 
+    ngOnInit(): void {
         this.getBeerByName(this.beerName);
     }
 
@@ -63,6 +63,10 @@ export class BeerDetailsComponent implements OnInit {
 
     public navigateSearchJudge() {
         this.router.navigate(["/searchJudge"]);
+    }
+
+    public navigateMyProfile() {
+        this.router.navigate(["/myProfile"]);
     }
 
     public navigateHome() {

@@ -96,8 +96,8 @@ export class SearchJudgeComponent implements OnInit, AfterViewInit {
         this.router.navigate(["/searchBeer"]);
     }
 
-    public navigateSearchJudge() {
-        this.router.navigate(["/searchJudge"]);
+    public navigateMyProfile() {
+        this.router.navigate(["/myProfile"]);
     }
 
     public navigateHome() {

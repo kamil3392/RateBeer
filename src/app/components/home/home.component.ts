@@ -30,7 +30,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
     ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
-        // this.extractData();
+        this.extractData();
         // this._changeDetectionRef.detectChanges();
     }
 
@@ -44,12 +44,10 @@ export class HomeComponent implements AfterViewInit, OnInit {
     // }
 
     private extractData() {
-        this.firebaseService.searchBeers(ApplicationSettings.getString("email"))
-
-    let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"))
-
-    this.beerData = Object.keys(obj.value).map(e=>obj.value[e])
-        console.log(this.beerData);
+      this.firebaseService.searchBeers(ApplicationSettings.getString("email"));
+      let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"));
+      this.beerData = Object.keys(obj.value).map(e=>obj.value[e]);
+      console.log(this.beerData);
     }
 
     // private onGetDataSuccess(res) {
@@ -62,10 +60,6 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
     public navigateTakePhoto() {
         this.router.navigate(["/takePhoto"]);
-    }
-
-    public navigateHome() {
-        this.router.navigate(["/home"]);
     }
 
     public logout() {
@@ -91,5 +85,9 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
     public  navigateSearchJudge() {
         this.router.navigate(["/searchJudge"]);
+    }
+
+    public navigateMyProfile() {
+        this.router.navigate(["/myProfile"]);
     }
 }
