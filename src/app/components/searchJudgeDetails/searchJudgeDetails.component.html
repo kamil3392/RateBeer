@@ -1,0 +1,71 @@
+<ActionBar title="Search Judge" class="action-bar">
+    <ActionItem text="Menu" (tap)="openDrawer()"></ActionItem>
+</ActionBar>
+
+<RadSideDrawer #myDrawer tkExampleTitle tkToggleNavButton>
+    <GridLayout tkDrawerContent rows="auto, *" class="sideStackLayout">
+        <StackLayout class="sideTitleStackLayout">
+            <Label text="Navigation Menu"></Label>
+        </StackLayout>
+        <ScrollView row="1">
+                <StackLayout class="sideStackLayout">
+                    <Label text="HOME" class="sideLabel" (tap)="navigateHome()"></Label>
+                    <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateSearchBeer()"></Label>
+                    <Label text="MY PROFILE" class="sideLabel" (tap)="navigateMyProfile()"></Label>
+                    <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
+                    <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center" (tap)="onCloseDrawerTap()"></Label>
+                </StackLayout>
+            </ScrollView>
+    </GridLayout>0
+
+
+
+<!--
+    <StackLayout tkMainContent>
+        <SearchBar row="0" hint="Search for a Judge and press enter" (clear)="onClear($event)" (submit)="onSubmit($event)"></SearchBar>
+        <ListView row="1" [items]="myItems" class="list-group">
+            <ng-template let-item="item">
+                <GridLayout class="item list-group-item">
+                    <Label [text]="item.name" class="list-group-item-heading"></Label>
+                </GridLayout>
+            </ng-template>
+        </ListView>
+    </StackLayout>
+</RadSideDrawer> -->
+
+
+                                <!-- TO DO  -->
+
+<!-- <GridLayout rows="auto,*" sdkExampleTitle sdkToggleNavButton>
+    <SearchBar row="0" hint="Search" (clear)="onClear($event)" (textChange)="onTextChange($event)" (loaded)="searchBarLoaded($event)" (submit)="onSubmit($event)"
+    style=" color:#a38e5a" textFieldHintColor="lightgray" textFieldBackgroundColor="beige"></SearchBar>
+    <Label row="1" [text]="searchPhrase" textWrap="true" class="h3 p-15 text-center"></Label>
+    <ListView row="1" [items]="myItems" class="list-group">
+    <ng-template let-comment="item" let-i="index" let-odd="odd" let-even="even">
+        <GridLayout class="item list-group-item">
+            <Label [text]="item.name" class="list-group-item-heading"></Label>
+        </GridLayout>
+    </ng-template>
+</ListView>
+</GridLayout> -->
+
+<!-- <GridLayout rows="auto,*">
+    <ListView row="1" [items]="_batches" (itemTap)="onItemTap($event)" class="list-group">
+        <ng-template let-comment="item" let-i="index" let-odd="odd" let-even="even"> -->
+            <!-- The item template can only have a single root view container (e.g. GridLayout, StackLayout, etc.)-->
+            <!-- <StackLayout orientation="horizontal" class="list-group-item">
+                <StackLayout width="200" height="45">
+                    <Label horizontalAlignment="left" [text]="comment.title" textWrap="true"></Label>
+                    <Label horizontalAlignment="left" [text]="comment.title" textWrap="true"></Label>
+                </StackLayout>
+                <StackLayout width="60">
+                    <Button horizontalAlignment="right" class="edit-button" text=""
+                        (tap)="EditItem(comment.id)"></Button>
+                </StackLayout>
+                <StackLayout horizontalAlignment="right" width="60">
+                    <Button class="delete-button" text="" (tap)="DeleteItem(comment.id)"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</GridLayout> -->

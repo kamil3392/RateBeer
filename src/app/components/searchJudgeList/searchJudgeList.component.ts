@@ -13,10 +13,10 @@ class DataItem {
 
 @Component({
     moduleId: module.id,
-    templateUrl: "./searchJudge.component.html",
+    templateUrl: "./searchJudgeList.component.html",
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchJudgeComponent implements OnInit, AfterViewInit {
+export class SearchJudgeListComponent implements OnInit, AfterViewInit {
 
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;

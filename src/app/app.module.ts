@@ -15,7 +15,8 @@ import { JudgeBeerComponent } from "./components/judgeBeer/judgeBeer.component";
 import { AddBeerComponent } from "./components/addBeer/addBeer.component";
 import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
 import { SearchBeerComponent } from "~/app/components/searchBeer/searchBeer.component";
-import { SearchJudgeComponent } from "~/app/components/searchJudge/searchJudge.component";
+import { SearchJudgeDetailsComponent } from "~/app/components/searchJudgeDetails/searchJudgeDetails.component";
+import { SearchJudgeListComponent } from "~/app/components/searchJudgeList/searchJudgeList.component";
 import { TakePhotoComponent } from "~/app/components/takePhoto/takePhoto.component";
 import { MyProfile } from "~/app/components/myProfile/myProfile.component";
 
@@ -41,7 +42,8 @@ import { MyProfile } from "~/app/components/myProfile/myProfile.component";
         AddBeerComponent,
         BeerDetailsComponent,
         SearchBeerComponent,
-        SearchJudgeComponent,
+        SearchJudgeDetailsComponent,
+        SearchJudgeListComponent,
         TakePhotoComponent,
         MyProfile
     ],

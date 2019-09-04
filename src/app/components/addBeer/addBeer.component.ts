@@ -72,8 +72,8 @@ export class AddBeerComponent implements OnInit, AfterViewInit {
         this.router.navigate(["/searchBeer"]);
     }
 
-    public navigateSearchJudge() {
-        this.router.navigate(["/searchJudge"]);
+    public navigateSearchJudgeDetails() {
+        this.router.navigate(["/searchJudgeDetails"]);
     }
 
     public navigateMyProfile() {

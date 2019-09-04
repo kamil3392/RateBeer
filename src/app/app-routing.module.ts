@@ -9,7 +9,8 @@ import {JudgeBeerComponent} from "~/app/components/judgeBeer/judgeBeer.component
 import {AddBeerComponent} from "~/app/components/addBeer/addBeer.component";
 import {BeerDetailsComponent} from "~/app/components/beerDetails/beer-details.component";
 import { SearchBeerComponent } from "~/app/components/searchBeer/searchBeer.component";
-import { SearchJudgeComponent } from "./components/searchJudge/searchJudge.component";
+import { SearchJudgeDetailsComponent } from "./components/searchJudgeDetails/searchJudgeDetails.component";
+import { SearchJudgeListComponent } from "./components/searchJudgeList/searchJudgeList.component";
 import { TakePhotoComponent } from "./components/takePhoto/takePhoto.component";
 import { MyProfile } from "~/app/components/myProfile/myProfile.component";
 
@@ -23,7 +24,8 @@ const routes: Routes = [
     { path: "addBeer", component: AddBeerComponent },
     { path: "beerDetails/:name", component: BeerDetailsComponent },
     { path: "searchBeer", component: SearchBeerComponent },
-    { path: "searchJudge", component: SearchJudgeComponent },
+    { path: "searchJudgeDetails", component: SearchJudgeDetailsComponent },
+    { path: "searchJudgeList", component: SearchJudgeListComponent },
     { path: "takePhoto", component: TakePhotoComponent },
     { path: "myProfile", component: MyProfile }
 

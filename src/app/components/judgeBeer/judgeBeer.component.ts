@@ -127,8 +127,8 @@ export class JudgeBeerComponent implements OnInit {
         this.router.navigate(["/searchBeer"]);
     }
 
-    public navigateSearchJudge() {
-        this.router.navigate(["/searchJudge"]);
+    public navigateSearchJudgeDetails() {
+        this.router.navigate(["/searchJudgeDetails"]);
     }
 
     public navigateHome() {

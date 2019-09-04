@@ -83,8 +83,8 @@ export class HomeComponent implements AfterViewInit, OnInit {
         this.router.navigate(["/searchBeer"]);
     }
 
-    public  navigateSearchJudge() {
-        this.router.navigate(["/searchJudge"]);
+    public  navigateSearchJudgeDetails() {
+        this.router.navigate(["/searchJudgeDetails"]);
     }
 
     public navigateMyProfile() {

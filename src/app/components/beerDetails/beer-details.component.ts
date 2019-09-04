@@ -61,8 +61,8 @@ export class BeerDetailsComponent implements OnInit {
         this.router.navigate(["/beerDetails", name]);
     }
 
-    public navigateSearchJudge() {
-        this.router.navigate(["/searchJudge"]);
+    public navigateSearchJudgeDetails() {
+        this.router.navigate(["/searchJudgeDetails"]);
     }
 
     public navigateMyProfile() {
