@@ -18,10 +18,12 @@ export class MyProfile implements AfterViewInit, OnInit {
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
-
+    private user: any;
     public constructor(private router: RouterExtensions, private _changeDetectionRef: ChangeDetectorRef, private firebaseService: FirebaseService)  { }
 
     public ngOnInit() {
+       this.fetchCurrentUser();
+       this.extractData();
     }
 
     ngAfterViewInit() {
@@ -63,5 +65,17 @@ export class MyProfile implements AfterViewInit, OnInit {
 
     public  navigateSearchJudgeDetails() {
         this.router.navigate(["/searchJudgeDetails"]);
+    }
+
+    fetchCurrentUser() {
+        this.firebaseService.getCurrentUser().then((result: any) => {
+            this.user = JSON.parse(result);
+        });
+    }
+
+    private extractData() {
+        this.firebaseService.searchBeers(ApplicationSettings.getString("email"));
+        let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"));
+        this.beerData = Object.keys(obj.value).map(e=>obj.value[e]);
     }
 }

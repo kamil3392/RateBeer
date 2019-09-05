@@ -3,7 +3,7 @@
 </ActionBar>
 
 <RadSideDrawer #myDrawer tkExampleTitle tkToggleNavButton>
-    <GridLayout tkDrawerContent rows="auto, *" class="sideStackLayout">
+    <GridLayout tkDrawerContent rows="auto, *" class="sideStackLayout" >
         <StackLayout class="sideTitleStackLayout">
             <Label text="Navigation Menu"></Label>
         </StackLayout>
@@ -15,9 +15,55 @@
                     <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
                     <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center" (tap)="onCloseDrawerTap()"></Label>
                 </StackLayout>
-            </ScrollView>
-    </GridLayout>0
+        </ScrollView>
+    </GridLayout>
 
+        <ScrollView tkMainContent>
+            <StackLayout>
+                <GridLayout rows="22, 20,28, 16, 24,28, 16, 24,28, 16, 24,28" columns="32,*,32,24,*,32,32" >
+                <Label row="1" col="1" colSpan="5" text="Judge name" class="title-label"></Label>
+                <Label row="2" col="1" colSpan="5" [text]="judgeSearch" (tap)="onOpenSearchAirportTap(true)" class="scf-input"></Label>
+                <Image row="1" col="5" rowSpan="2" class="icon-next" src="../images/baseline_navigate_next_black_48.png"
+                  (tap)="onOpenSearchAirportTap(true)"></Image>
+                </GridLayout>
+            </StackLayout>
+        </ScrollView>
+</RadSideDrawer>
+
+
+    <!-- <GridLayout rows="22, 20,28, 16, 24,28, 16, 24,28, 16, 24,28" columns="32,*,32,24,*,32,32"
+    class="body scf-card animate-bounceInLeft-delay-0ms">
+
+    <Label row="1" col="1" colSpan="5" text="From" class="title-label"></Label>
+    <Label row="2" col="1" colSpan="5" [text]="fromAirport" (tap)="onOpenSearchAirportTap(true)"
+        class="scf-input"></Label>
+    <Image row="1" col="5" rowSpan="2" class="icon-next" src="../images/baseline_navigate_next_black_48.png"
+        (tap)="onOpenSearchAirportTap(true)"></Image> -->
+
+    <!-- <Label row="4" col="1" colSpan="5" text="To" class="title-label"></Label>
+    <Label row="5" col="1" colSpan="5" [text]="toAirport" (tap)="onOpenSearchAirportTap(false)"
+        class="scf-input"></Label>
+
+    <Image row="4" col="5" rowSpan="2" class="icon-next" src="../images/baseline_navigate_next_black_48.png"
+        (tap)="onOpenSearchAirportTap(false)"></Image> -->
+
+    <!-- <Label row="7" col="1" colSpan="2" text="Depart" class="title-label"></Label>
+
+    <Label row="8" col="1" colSpan="2" text='{{ departureDate | date:"y/M/d" }}'
+        class="scf-input" (tap)="onOpenSelectDate(true)"></Label>
+
+    <Label row="7" col="4" colSpan="2" text="Return" class="title-label"></Label>
+
+    <Label row="8" col="4" colSpan="2" text='{{ returnDate | date:"y/M/d" }}'
+        class="scf-input" (tap)="onOpenSelectDate(false)"></Label>
+
+    <Label row="10" col="1" colSpan="5" text="Cabin" class="title-label"></Label>
+
+    <Label row="11" col="1" colSpan="5" hint="Economy" class="scf-input"
+        editable="false" [text]="typeOfService" (tap)="onTypeServiceTap()"></Label>
+
+    <Image row="11" col="5" class="icon-next" src="~/images/baseline_keyboard_arrow_down_black_48.png"
+        (tap)="onTypeServiceTap()"></Image> -->
 
 
 <!--

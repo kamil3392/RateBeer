@@ -33,6 +33,14 @@ export class FirebaseService {
         )
     }
 
+    public getCurrentUser() {
+        return firebase.getCurrentUser().then((result: any) => {
+            return JSON.stringify(result);
+        }, (errorMessage: any) => {
+            alert(errorMessage);
+        });
+    }
+
     searchJudge(email) {
         console.log("Search judge criteria: " + email)
         let resultFoundFunction = function(result) {

@@ -1,43 +1,42 @@
 <ActionBar title="My profile" class="action-bar">
-    <ActionItem text="Menu" (tap)="openDrawer()"></ActionItem>
-</ActionBar>
-<RadSideDrawer #myDrawer tkExampleTitle tkToggleNavButton>
-    <GridLayout tkDrawerContent rows="auto, *" class="sideStackLayout">
-        <StackLayout class="sideTitleStackLayout">
-            <Label text="Navigation Menu"></Label>
+        <ActionItem text="Menu" (tap)="openDrawer()"></ActionItem>
+    </ActionBar>
+    <RadSideDrawer #myDrawer tkExampleTitle tkToggleNavButton>
+        <GridLayout tkDrawerContent rows="auto, *" class="sideStackLayout">
+            <StackLayout class="sideTitleStackLayout">
+                <Label text="Navigation Menu"></Label>
+            </StackLayout>
+            <ScrollView row="1">
+                <StackLayout class="sideStackLayout">
+                    <Label text="HOME" class="sideLabel" (tap)="navigateHome()"></Label>
+                    <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateSearchBeer()"></Label>
+                    <Label text="SEARCH JUDGE" class="sideLabel" (tap)="navigateSearchJudgeDetails()"></Label>
+                    <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
+                    <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center"
+                        (tap)="onCloseDrawerTap()"></Label>
+                </StackLayout>
+            </ScrollView>
+        </GridLayout>
+
+        <StackLayout tkMainContent>
+            <ScrollView>
+                <StackLayout margin="50" verticalAlignment="center">
+                    <Label text="{{user.email}}" class="label-category"></Label>
+
+                    <GridLayout rows="*, *" columns="*, *" marginTop="80" class="form">
+
+                        <Button row="0" col="0" class="btn-general" text="My CHECK-INS"
+                            (tap)="navigateHome()"></Button>
+                        <Button row="0" col="1" class="btn-general" text="MY BADGES"
+                            (tap)="navigateSearchJudgeDetails()"></Button>
+
+                        <Label row="1" col="0" text="{{beerData.length}}" class="label-category"></Label>
+                        <Label row="1" col="1" text="liczba odznak" class="label-category"></Label>
+
+                    </GridLayout>
+
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
-        <ScrollView row="1">
-            <StackLayout class="sideStackLayout">
-                <Label text="HOME" class="sideLabel" (tap)="navigateHome()"></Label>
-                <Label text="JUDGE BEER" class="sideLabel" (tap)="navigateSearchBeer()"></Label>
-                <Label text="SEARCH JUDGE" class="sideLabel" (tap)="navigateSearchJudgeDetails()"></Label>
-                <Label text="SIGN OUT" class="sideLabel" (tap)="logout()"></Label>
-                <Label text="Close Menu" color='#757575' padding="10" style="horizontal-align: center"
-                    (tap)="onCloseDrawerTap()"></Label>
-            </StackLayout>
-        </ScrollView>
-    </GridLayout>
 
-    <StackLayout tkMainContent>
-        <ScrollView>
-            <StackLayout margin="50" verticalAlignment="center">
-                <Label text="MONIKA" class="label-category"></Label>
-                <Label text="KRK" class="label-category"></Label>
-
-                <GridLayout rows="*, *" columns="*, *" marginTop="80" class="form">
-
-                    <Button row="0" col="0" class="btn-general" text="My CHECK-INS"
-                        (tap)="loginByLoginAndPassword()"></Button>
-                    <Button row="0" col="1" class="btn-general" text="MY BADGES"
-                        (tap)="loginByLoginAndPassword()"></Button>
-
-                    <Label row="1" col="0" text="liczba ocenionych piw" class="label-category"></Label>
-                    <Label row="1" col="1" text="liczba odznak" class="label-category"></Label>
-
-                </GridLayout>
-
-            </StackLayout>
-        </ScrollView>
-    </StackLayout>
-
-</RadSideDrawer>
+    </RadSideDrawer>

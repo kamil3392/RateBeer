@@ -1,80 +1,122 @@
 import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectionStrategy} from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
+// import { RouterExtensions } from "nativescript-angular/router";
 import { NavigationExtras } from "@angular/router";
-import { SearchBar } from "tns-core-modules/ui/search-bar";
-import { ObservableArray } from "tns-core-modules/data/observable-array";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
 import {RadSideDrawer} from "nativescript-ui-sidedrawer";
 import * as ApplicationSettings from "tns-core-modules/application-settings";
+import { ActivatedRoute } from "@angular/router";
+import { ModalDialogParams, RouterExtensions } from "nativescript-angular";
+import { Page } from "tns-core-modules/ui/page";
+import { SearchBar } from "tns-core-modules/ui/search-bar";
+import { ObservableArray } from "tns-core-modules/data/observable-array";
+import { isAndroid } from "tns-core-modules/platform";
+import { Color } from "tns-core-modules/color";
 
 class DataItem {
     constructor(public name: string) { }
 }
 
-@Component({
-    moduleId: module.id,
-    templateUrl: "./searchJudgeList.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class SearchJudgeListComponent implements OnInit, AfterViewInit {
 
-    @ViewChild(RadSideDrawerComponent)
-    public drawerComponent: RadSideDrawerComponent;
-    private drawer: RadSideDrawer;
+    @Component({
+        selector: 'ns-search-airport',
+        templateUrl: 'searchJudgeList.component.html',
+        styleUrls: ['searchJudgeList.component.css'],
+        // changeDetection: ChangeDetectionStrategy.OnPush
+        moduleId: module.id,
+    })
+    export class SearchJudgeListComponent implements OnInit, AfterViewInit {
 
-    constructor(private router: RouterExtensions) {}
+        @ViewChild(RadSideDrawerComponent)
+        public drawerComponent: RadSideDrawerComponent;
+        private drawer: RadSideDrawer;
 
-    ngOnInit(): void { }
 
-    goHome() {
-        this.router.navigate(["/home"], {clearHistory: true})
-    }
 
-    private arrayItems: Array<DataItem> = [];
-    public myItems: ObservableArray<DataItem> = new ObservableArray<DataItem>();
+        // goHome() {
+        //     this.router.navigate(["/home"], {clearHistory: true})
+        // }
 
-                      // TO DO
+        private _searchedText: string = '';
+        private arrayJudges: Array<DataItem> = [];
+        public judges: ObservableArray<DataItem> = new ObservableArray<DataItem>();
+        public isFrom: boolean = false;
 
-    // constructor() {
-    //     this.arrayItems.push(new DataItem("Judge_1"));
-    //     this.arrayItems.push(new DataItem("Judge_2"));
-    //     this.arrayItems.push(new DataItem("Judge_3"));
-    //     this.arrayItems.push(new DataItem("Judge_4"));
-    //     this.arrayItems.push(new DataItem("Judge_5"));
-    //     this.arrayItems.push(new DataItem("Judge_6"));
-    //     this.arrayItems.push(new DataItem("Judge_7"));
+        constructor(private _params: ModalDialogParams, private _page: Page, private router: RouterExtensions, private _activeRoute: ActivatedRoute) {
+            this.arrayJudges.push(new DataItem("Test Judge 1"));
+            this.arrayJudges.push(new DataItem("Test Judge 2"));
+            this.arrayJudges.push(new DataItem("Test Judge 3"));
+            this.arrayJudges.push(new DataItem("Test Judge 4"));
+            this.arrayJudges.push(new DataItem("Test Judge 5"));
+            this.arrayJudges.push(new DataItem("Test Judge 6"));
+            this.arrayJudges.push(new DataItem("Test Judge 7"));
+            this.arrayJudges.push(new DataItem("Test Judge 8"));
+            this.arrayJudges.push(new DataItem("Test Judge 9"));
+            this.arrayJudges.push(new DataItem("Test Judge 10"));
+            this.arrayJudges.push(new DataItem("Test Judge 11"));
+            this.arrayJudges.push(new DataItem("Test Judge 12"));
+            this.arrayJudges.push(new DataItem("Test Judge 13"));
+            this.arrayJudges.push(new DataItem("Test Judge 14"));
 
-    //     this.myItems = new ObservableArray<DataItem>(this.arrayItems);
-    // }
+            this.judges = new ObservableArray<DataItem>(this.arrayJudges);
+            this.isFrom = this._params.context.isFrom;
+        }
 
-    public onSubmit(args) {
-        let searchBar = <SearchBar>args.object;
-        let searchValue = searchBar.text.toLowerCase();
+        ngOnInit() {
+        }
 
-        this.myItems = new ObservableArray<DataItem>();
-        if (searchValue !== "") {
-            for (let i = 0; i < this.arrayItems.length; i++) {
-                if (this.arrayItems[i].name.toLowerCase().indexOf(searchValue) !== -1) {
-                    this.myItems.push(this.arrayItems[i]);
+        onClose(): void {
+            this._params.closeCallback("return value");
+        }
+
+        onSelectItem(args) {
+            let judge = (this._searchedText !== "") ? this.judges.getItem(args.index) : this.arrayJudges[args.index];
+            this._params.closeCallback({
+                isFrom: this.isFrom,
+                judge
+            });
+        }
+
+        public onSubmit(args) {
+            let searchBar = <SearchBar>args.object;
+            let searchValue = searchBar.text.toLowerCase();
+            this._searchedText = searchValue;
+
+            this.judges = new ObservableArray<DataItem>();
+            if (searchValue !== "") {
+                for (let i = 0; i < this.arrayJudges.length; i++) {
+                    if (this.arrayJudges[i].name.toLowerCase().indexOf(searchValue) !== -1) {
+                        this.judges.push(this.arrayJudges[i]);
+                    }
                 }
             }
         }
-    }
 
-    public onClear(args) {
-        let searchBar = <SearchBar>args.object;
-        searchBar.text = "";
-        searchBar.hint = "Search for a Judge and press enter";
+        public searchBarLoaded(args) {
+            let searchBar = <SearchBar>args.object;
+            searchBar.dismissSoftInput();
 
-        this.myItems = new ObservableArray<DataItem>();
-        this.arrayItems.forEach(item => {
-            this.myItems.push(item);
-        });
-    }
+            if (isAndroid) {
+                searchBar.android.clearFocus();
+            }
 
-    public goBack() {
-        this.router.navigate(["/home", false], {clearHistory: true})
-    }
+            searchBar.text = "";
+        }
+
+        public onClear(args) {
+            let searchBar = <SearchBar>args.object;
+            searchBar.text = "";
+            searchBar.hint = "Search for a judge";
+
+            this.judges = new ObservableArray<DataItem>();
+            this.arrayJudges.forEach(item => {
+                this.judges.push(item);
+            });
+        }
+
+        public onTextChanged(args) {
+            this.onSubmit(args);
+        }
+
 
     ngAfterViewInit(): void {
         this.drawer = this.drawerComponent.sideDrawer;
@@ -112,4 +154,5 @@ export class SearchJudgeListComponent implements OnInit, AfterViewInit {
     public navigateJudgeBeer() {
         this.router.navigate(["/judgeBeer"]);
     }
+
 }
