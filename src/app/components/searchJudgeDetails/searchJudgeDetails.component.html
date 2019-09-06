@@ -23,11 +23,30 @@
                 <GridLayout rows="22, 20,28, 16, 24,28, 16, 24,28, 16, 24,28" columns="32,*,32,24,*,32,32" >
                 <Label row="1" col="1" colSpan="5" text="Judge name" class="title-label"></Label>
                 <Label row="2" col="1" colSpan="5" [text]="judgeSearch" (tap)="onOpenSearchAirportTap(true)" class="scf-input"></Label>
-                <Image row="1" col="5" rowSpan="2" class="icon-next" src="../images/baseline_navigate_next_black_48.png"
+                <Image row="1" col="5" rowSpan="2" class="icon-next" src="images/baseline_navigate_next_black_48.png"
                   (tap)="onOpenSearchAirportTap(true)"></Image>
                 </GridLayout>
             </StackLayout>
         </ScrollView>
+<!--
+        <ScrollView>
+                <StackLayout margin="50" verticalAlignment="center">
+                    <Label text="{{user.email}}" class="label-category"></Label>
+
+                    <GridLayout rows="*, *" columns="*, *" marginTop="80" class="form">
+
+                        <Button row="0" col="0" class="btn-general" text="My CHECK-INS"
+                            (tap)="navigateHome()"></Button>
+                        <Button row="0" col="1" class="btn-general" text="MY BADGES"
+                            (tap)="navigateHome()"></Button>
+
+                        <Label row="1" col="0" text="{{beerData.length}}" class="label-category"></Label>
+                        <Label row="1" col="1" text="liczba odznak" class="label-category"></Label>
+
+                    </GridLayout>
+
+                </StackLayout>
+            </ScrollView> -->
 </RadSideDrawer>
 
 

@@ -30,12 +30,6 @@ class DataItem {
         public drawerComponent: RadSideDrawerComponent;
         private drawer: RadSideDrawer;
 
-
-
-        // goHome() {
-        //     this.router.navigate(["/home"], {clearHistory: true})
-        // }
-
         private _searchedText: string = '';
         private arrayJudges: Array<DataItem> = [];
         public judges: ObservableArray<DataItem> = new ObservableArray<DataItem>();
@@ -118,7 +112,7 @@ class DataItem {
         }
 
 
-    ngAfterViewInit(): void {
+    ngAfterViewInit() {
         this.drawer = this.drawerComponent.sideDrawer;
     }
 

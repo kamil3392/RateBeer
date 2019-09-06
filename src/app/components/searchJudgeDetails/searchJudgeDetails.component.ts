@@ -5,8 +5,10 @@ import { ObservableArray } from "tns-core-modules/data/observable-array";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
 import {RadSideDrawer} from "nativescript-ui-sidedrawer";
 import * as ApplicationSettings from "tns-core-modules/application-settings";
+import {FirebaseService} from '../../services/firebase.service';
+import { BreweryGetService } from "~/app/services/brewery-get.service";
 
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewContainerRef, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewContainerRef, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { ModalDialogOptions, ModalDialogService } from "nativescript-angular";
 import { SearchJudgeListComponent } from "../searchJudgeList/searchJudgeList.component";
 import { action } from "tns-core-modules/ui/dialogs";
@@ -22,7 +24,7 @@ class DataItem {
     templateUrl: "searchJudgeDetails.component.html",
     styleUrls: ['searchJudgeDetails.component.css'],
     //changeDetection: ChangeDetectionStrategy.OnPush
-    providers: [ModalDialogService],
+    providers: [ModalDialogService, BreweryGetService],
     selector: 'ns-book-flight'
 })
 
@@ -32,53 +34,35 @@ class DataItem {
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
+    public beerData: Array<any>;
+    private user: any;
 
-    // UWAGA dodać raczej ! ///////////////////////////////////////////////////////////
-    // constructor(private router: RouterExtensions) {}
+    public showReturn: boolean = false;
+    public judgeSearch: string = 'Click to search for a judge';
 
-    ngOnInit(): void { }
-
-    // goHome() {
-    //     this.router.navigate(["/home"], {clearHistory: true})
-    // }
-
-        public showReturn: boolean = false;
-        public judgeSearch: string = 'Click to search for a judge';
-        // public toAirport: string = 'Enter Airport / City';
-        // public typeOfService: string = 'Economy';
-        // public departureDate = new Date();
-        // public returnDate = new Date();
-
-        private _overlayGridLayout: GridLayout;
+    private _overlayGridLayout: GridLayout;
         @Output() openSelectDate = new EventEmitter();
         @Input() isOnOpenDepartureDate;
 
-        constructor(
-            private _modalService: ModalDialogService,
-            private router: RouterExtensions,
-            private _vcRef: ViewContainerRef,
-            private page: Page) {
-            this._overlayGridLayout = this.page.getViewById('overlayGridLayout');
+    public constructor(
+        private _modalService: ModalDialogService,
+        private router: RouterExtensions,
+        private _vcRef: ViewContainerRef,
+        private _changeDetectionRef: ChangeDetectorRef,
+        private firebaseService: FirebaseService,
+        private page: Page) {
+        this._overlayGridLayout = this.page.getViewById('overlayGridLayout');
         }
 
-        // ngOnInit() {
-        //     this.returnDate.setDate(this.departureDate.getDate() + 2);
-        // }
+        public ngOnInit() {
+            this.fetchCurrentUser();
+            this.extractData();
+        }
 
-        // @Input()
-        // set selectedDate(selectedDate: Date) {
-        //     if (selectedDate) {
-        //         if (this.isOnOpenDepartureDate) {
-        //             this.departureDate = selectedDate;
-        //         } else {
-        //             this.returnDate = selectedDate;
-        //         }
-        //     }
-        // }
+        ngAfterViewInit() {
+            this.drawer = this.drawerComponent.sideDrawer;
+        }
 
-        // toggleReturn() {
-        //     this.showReturn = !this.showReturn;
-        // }
 
         onOpenSearchAirportTap(isFrom: boolean): void {
             const options: ModalDialogOptions = {
@@ -92,81 +76,26 @@ class DataItem {
                     if (result.isFrom) {
                         this.judgeSearch = result.judge.name;
                     }
-                    // else {
-                    //     this.toAirport = result.airport.name;
-                    // }
+
                 });
+            }
+
+        fetchCurrentUser() {
+        this.firebaseService.getCurrentUser().then((result: any) => {
+            this.user = JSON.parse(result);
+            });
         }
 
-        // onTypeServiceTap(): void {
-        //     let options = {
-        //         title: "Type of Service",
-        //         message: "Choose your service",
-        //         cancelButtonText: "Cancel",
-        //         actions: ["Economy", "Premium Economy", "Premium Business"]
-        //     };
-
-        //     action(options).then((result) => {
-        //         this.typeOfService = (result == 'Cancel') ? this.typeOfService : result;
-        //     });
-        // }
-
-        // onOpenSelectDate(isOnOpenDepartureDate: boolean): void {
-        //     this.openSelectDate.emit(isOnOpenDepartureDate);
-        // }
+        private extractData() {
+            this.firebaseService.searchBeers(ApplicationSettings.getString("email"));
+            let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"));
+            this.beerData = Object.keys(obj.value).map(e=>obj.value[e]);
+        }
 
 
-
-
-    // private arrayItems: Array<DataItem> = [];
-    // public myItems: ObservableArray<DataItem> = new ObservableArray<DataItem>();
-
-    //                   // TO DO
-
-    // // constructor() {
-    // //     this.arrayItems.push(new DataItem("Judge_1"));
-    // //     this.arrayItems.push(new DataItem("Judge_2"));
-    // //     this.arrayItems.push(new DataItem("Judge_3"));
-    // //     this.arrayItems.push(new DataItem("Judge_4"));
-    // //     this.arrayItems.push(new DataItem("Judge_5"));
-    // //     this.arrayItems.push(new DataItem("Judge_6"));
-    // //     this.arrayItems.push(new DataItem("Judge_7"));
-
-    // //     this.myItems = new ObservableArray<DataItem>(this.arrayItems);
-    // // }
-
-    // public onSubmit(args) {
-    //     let searchBar = <SearchBar>args.object;
-    //     let searchValue = searchBar.text.toLowerCase();
-
-    //     this.myItems = new ObservableArray<DataItem>();
-    //     if (searchValue !== "") {
-    //         for (let i = 0; i < this.arrayItems.length; i++) {
-    //             if (this.arrayItems[i].name.toLowerCase().indexOf(searchValue) !== -1) {
-    //                 this.myItems.push(this.arrayItems[i]);
-    //             }
-    //         }
-    //     }
+    // public goBack() {
+    //     this.router.navigate(["/home", false], {clearHistory: true})
     // }
-
-    // public onClear(args) {
-    //     let searchBar = <SearchBar>args.object;
-    //     searchBar.text = "";
-    //     searchBar.hint = "Search for a Judge and press enter";
-
-    //     this.myItems = new ObservableArray<DataItem>();
-    //     this.arrayItems.forEach(item => {
-    //         this.myItems.push(item);
-    //     });
-    // }
-
-    public goBack() {
-        this.router.navigate(["/home", false], {clearHistory: true})
-    }
-
-    ngAfterViewInit(): void {
-        this.drawer = this.drawerComponent.sideDrawer;
-    }
 
     public openDrawer() {
         this.drawer.showDrawer();

@@ -26,11 +26,38 @@
 }
 
 .title-label {
-    font-size: 16;
+    font-size: 15;
     text-align: left;
-    color: #024184;
+    color: #FF6F00;
 }
 
 .icon-next {
     tint-color: #024184;
+}
+
+
+.label-category {
+    text-align: center;
+    font-size: 18;
+    color: #FF6F00;
+    font-weight: bold;
+    margin: 20;
+}
+
+.label-value {
+    text-align: center;
+    font-size: 18;
+    color: black;
+    margin: 8;
+}
+
+.btn-general {
+    text-align: center;
+    font-size: 15;
+    font-weight: bold;
+    color: white;
+    width: 50%;
+    height: 60;
+    background-color: #FFC01F;
+    margin-top: 20;
 }
