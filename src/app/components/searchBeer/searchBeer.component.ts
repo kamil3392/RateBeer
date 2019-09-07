@@ -82,19 +82,6 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
 
             }
             console.log(flagBeerNotFound)
-            // if (!flagBeerNotFound) {
-            //     dialogs.confirm({
-            //         title: "Beer not found",
-            //         message: "Do you want to add beer?",
-            //         okButtonText: "Add beer",
-            //         cancelButtonText: "Keep looking"
-            //     }).then(decision => {
-            //         if (decision) {
-            //             this.navigateAddBeer()
-            //         }
-            //     });
-            // }
-
             if (!flagBeerNotFound) {
                 dialogs.confirm({
                     title: "Beer not found",
@@ -103,22 +90,34 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
                     cancelButtonText: "Keep looking"
                 }).then(decision => {
                     if (decision) {
-                        dialogs.confirm({
-                            title: "Add photo?",
-                            message: "Do you want to add photo?",
-                            okButtonText: "Add photo",
-                            cancelButtonText: "No"
-                        }).then(decision => {
-                            if (decision) {
-                                this.navigateTakePhoto()
-                            } else {
-                                this.navigateAddBeer()
-                            }
-                        });
-
+                        this.navigateAddBeer()
                     }
                 });
             }
+
+            // if (!flagBeerNotFound) {
+            //     dialogs.confirm({
+            //         title: "Beer not found",
+            //         message: "Do you want to add beer?",
+            //         okButtonText: "Add beer",
+            //         cancelButtonText: "Keep looking"
+            //     }).then(decision => {
+            //         if (decision) {
+            //             dialogs.confirm({
+            //                 title: "Add photo?",
+            //                 message: "Do you want to add photo?",
+            //                 okButtonText: "Add photo",
+            //                 cancelButtonText: "No"
+            //             }).then(decision => {
+            //                 if (decision) {
+            //                     this.navigateTakePhoto()
+            //                 } else {
+            //                     this.navigateAddBeer()
+            //                 }
+            //             });
+            //         }
+            //     });
+            // }
         }
     }
 

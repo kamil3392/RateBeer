@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
-import { NavigationExtras } from "@angular/router";
+import { NavigationExtras, ActivatedRoute } from "@angular/router";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
 import {RadSideDrawer} from "nativescript-ui-sidedrawer";
 import * as ApplicationSettings from "tns-core-modules/application-settings";
@@ -10,9 +10,7 @@ import { Mediafilepicker, ImagePickerOptions, VideoPickerOptions, AudioPickerOpt
 import { Image } from "tns-core-modules/ui/image/image";
 import * as fs from "tns-core-modules/file-system";
 import * as firebase from "nativescript-plugin-firebase";
-
-import * as moment from 'moment';
-import { uploadFile } from "nativescript-plugin-firebase/storage/storage";
+import { FirebaseService } from "~/app/services/firebase.service";
 
 @Component({
     selector: "tp",
@@ -22,8 +20,23 @@ import { uploadFile } from "nativescript-plugin-firebase/storage/storage";
 })
 
 export class TakePhotoComponent {
+    
+    private beerName: string;
+    private breweryName: string;
+    private beerStyle: string;
+    private beerAbv: string;
+    private beerPlato: string;
 
-    constructor(private router: RouterExtensions, private _page: Page) { }
+    constructor(private _page: Page, private route: ActivatedRoute, private firebaseService: FirebaseService, private router: RouterExtensions) {
+        this.route.queryParams.subscribe(params => {
+            this.beerName = params["beerName"],
+            this.breweryName = params["breweryName"],
+            this.beerStyle = params["beerStyle"],
+            this.beerAbv = params["beerAbv"],
+            this.beerPlato = params["beerPlato"]
+        })
+    }
+    
     public options: ImagePickerOptions = {
         android: {
             isCaptureMood: false, // if true then camera will open directly.
@@ -36,58 +49,38 @@ export class TakePhotoComponent {
         }
     };
 
-
-    // public mediafilepicker: Mediafilepicker;
-    // private pickPhoto() {
-    //     let mediafilepicker =  new Mediafilepicker;
-    //     mediafilepicker.openImagePicker(this.options)
-    //     mediafilepicker.on("getFiles", function (res) {
-    //         let results = res.object.get('results');
-    //         console.dir("xD " + results.file);
-    //         console.log("Dx " + results.file)
-    //     });
-         
-    //     mediafilepicker.on("error", function (res) {
-    //         let msg = res.object.get('msg');
-    //         console.log(msg);
-    //     });
-         
-    //     mediafilepicker.on("cancel", function (res) {
-    //         let msg = res.object.get('msg');
-    //         console.log(msg);
-    //     });
-    // }
-
     private onContinueTap() {
-        this.router.navigate(["/searchBeer"]);
+
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "beerName": this.beerName,
+                "breweryName": this.breweryName,
+                "beerStyle": this.beerStyle,
+                "beerAbv": this.beerAbv,
+                "beerPlato": this.beerPlato
+            }
+        }
+
+        ApplicationSettings.setBoolean("flagUploadPhoto", true);
+        this.router.navigate(["/judgeBeer"], navigationExtras);
     }
 
-    // public uploadFile(pathSourceFile: any, pathFirebase: any) {
-    //     // init the file-system module
-    //     var fs = require("tns-core-modules/file-system");
+    private onSkipPhotoTap() {
 
-    //     // now upload the file with either of the options below:
-    //     firebase.storage.uploadFile({
-    //         // the full path of the file in your Firebase storage (folders will be created)
-    //         remoteFullPath: pathFirebase,
-    //         // option 2: a full file path (ignored if 'localFile' is set)
-    //         localFullPath: pathSourceFile,
-    //         // get notified of file upload progress
-    //         onProgress: function(status) {
-    //         console.log("Uploaded fraction: " + status.fractionCompleted);
-    //         console.log("Percentage complete: " + status.percentageCompleted);
-    //         }
-    //     }).then(
-    //         function (uploadedFile) {
-    //             console.log("File uploaded: " + JSON.stringify(uploadedFile));
-    //         },
-    //         function (error) {
-    //             console.log("File upload error: " + error);
-    //         }
-    //     );
-    // }
+        let navigationExtras: NavigationExtras = {
+            queryParams: {
+                "beerName": this.beerName,
+                "breweryName": this.breweryName,
+                "beerStyle": this.beerStyle,
+                "beerAbv": this.beerAbv,
+                "beerPlato": this.beerPlato
+            }
+        }
 
-    // public results: any;
+        ApplicationSettings.setBoolean("flagUploadPhoto", false);
+        this.router.navigate(["/judgeBeer"], navigationExtras);
+    }
+
     private pickPhoto() {
         let options: ImagePickerOptions = {
             android: {
@@ -116,7 +109,7 @@ export class TakePhotoComponent {
             let mySecond = myDate.getSeconds();
             let myMinute = myDate.getMinutes();
             let myHour = myDate.getHours();
-            let uploadFileName = myYear + myMonth + myDay + '_' + myHour + myMinute + mySecond as String;
+            let uploadFileName = myYear + myMonth + myDay + '_' + myHour + myMinute + mySecond + '.png' as String;
             console.log("Firebase file name: " + uploadFileName);
             
             let pathFirebaseUpload = 'uploads/checkins/' + ApplicationSettings.getString("email") + '/' + uploadFileName + '.png';

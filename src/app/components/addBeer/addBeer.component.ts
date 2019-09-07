@@ -4,6 +4,7 @@ import { NavigationExtras } from "@angular/router";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
 import {RadSideDrawer} from "nativescript-ui-sidedrawer";
 import * as ApplicationSettings from "tns-core-modules/application-settings";
+import * as dialogs from "tns-core-modules/ui/dialogs";
 
 @Component({
     selector: "ab",
@@ -46,8 +47,18 @@ export class AddBeerComponent implements OnInit, AfterViewInit {
             }
         }
 
-        
-        this.router.navigate(["/judgeBeer"], navigationExtras);
+        dialogs.confirm({
+            title: "Add photo?",
+            message: "Do you want to add photo?",
+            okButtonText: "Add photo",
+            cancelButtonText: "No"
+        }).then(decision => {
+            if (decision) {
+                this.router.navigate(["/takePhoto"], navigationExtras);
+            } else {
+                this.router.navigate(["/judgeBeer"], navigationExtras);
+            }
+        });
     }
 
     
@@ -96,6 +107,6 @@ export class AddBeerComponent implements OnInit, AfterViewInit {
     }
 
     public navigateJudgeBeer() {
-        this.router.navigate(["/judgeBeer"]);
+        this.router.navigate(["/searchBeer"]);
     }
 }

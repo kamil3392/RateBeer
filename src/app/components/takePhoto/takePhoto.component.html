@@ -1,12 +1,13 @@
 <ActionBar title="Take photo" class="action-bar">
 </ActionBar>
 
-<GridLayout rows="*, auto">
-    <Image row="0" [src]="results" stretch="fill" margin="10"></Image>
-    <StackLayout orientation="horizontal" row="1" padding="10">
-        <Button class = "btn-general" text="Pick photo" (tap)="pickPhoto($event)" row="2"
-            padding="10"></Button>
-        <Button class = "btn-general" text="Continue" (tap)="onContinueTap($event)" row="2"
-            padding="10"></Button>
-    </StackLayout>
+<GridLayout backgroundColor="#CCCCCC">
+    <!--<Image row="0" [src]="(imageFromLocalFile)" stretch="fill" margin="10"></Image>-->
+    <StackLayout verticalAlignment="center" margin="10">
+        <StackLayout class="form" padding="15" backgroundColor="#FFFFFF">
+            <Button class = "btn-general" text="Pick photo" (tap)="pickPhoto($event)"></Button>
+            <Button class = "btn-general" text="Continue" (tap)="onContinueTap($event)"></Button>
+            <Button class = "btn-general" text="Skip photo" (tap)="onSkipPhotoTap($event)"></Button>
+        </StackLayout> 
+    </StackLayout> 
 </GridLayout>
