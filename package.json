@@ -25,6 +25,7 @@
     "nativescript-angular": "~7.2.0",
     "nativescript-camera": "^4.5.0",
     "nativescript-geolocation": "^5.1.0",
+    "nativescript-mediafilepicker": "^2.0.16",
     "nativescript-plugin-firebase": "^8.3.0",
     "nativescript-snackbar": "^4.1.2",
     "nativescript-theme-core": "~1.0.4",

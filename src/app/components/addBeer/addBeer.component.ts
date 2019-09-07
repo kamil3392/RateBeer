@@ -45,9 +45,15 @@ export class AddBeerComponent implements OnInit, AfterViewInit {
                 "beerPlato": this.beerPlato
             }
         }
+
+        
         this.router.navigate(["/judgeBeer"], navigationExtras);
     }
 
+    
+    public navigateTakePhoto() {
+        this.router.navigate(["/takePhoto"]);
+    }
     public goBack() {
         this.router.navigate(["/home", false], {clearHistory: true})
     }

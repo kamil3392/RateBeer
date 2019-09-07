@@ -58,6 +58,7 @@ export class JudgeBeerComponent implements OnInit {
             this.beerAbv = params["beerAbv"],
             this.beerPlato = params["beerPlato"]
         })
+
     }
 
     ngAfterViewInit() {
@@ -65,8 +66,20 @@ export class JudgeBeerComponent implements OnInit {
     }
 
     postBeerReview() {
-        // this.myLocation = geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 20000 })
-        // console.log("created beer key: " + this.myLocation)
+
+        // dialogs.confirm({
+        //     title: "Take a photo!",
+        //     message: "Do you want to add a photo?",
+        //     okButtonText: "OK",
+        // }).then(decision => {
+        //     if (decision) {
+        //         this.goTakePhoto()
+        //     }
+        // });
+        this.goTakePhoto()
+
+        //this.myLocation = geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 20000 })
+        // console.log("beer location: " + this.myLocation)
         this.myCheckIn = {
             "beerDetails": {
               "beerName": this.beerName,
@@ -89,17 +102,18 @@ export class JudgeBeerComponent implements OnInit {
               "user": appSettings.getString("email"),
             }
           }
-        this.firebaseService.checkIn(this.myCheckIn)
+        // this.firebaseService.checkIn(this.myCheckIn)
 
-        dialogs.confirm({
-            title: "Rating posted",
-            // message: "Do you want to add beer?",
-            okButtonText: "OK",
-        }).then(decision => {
-            if (decision) {
-                this.goHome()
-            }
-        });
+        // this.goHome()
+        // dialogs.confirm({
+        //     title: "Rating posted",
+        //     // message: "Do you want to add beer?",
+        //     okButtonText: "OK",
+        // }).then(decision => {
+        //     if (decision) {
+        //         this.goHome()
+        //     }
+        // });
     }
 
     goHome() {

@@ -2,9 +2,9 @@
 </ActionBar>
 
 <GridLayout rows="*, auto">
-    <Image row="0" [src]="cameraImage" stretch="fill" margin="10"></Image>
+    <Image row="0" [src]="results" stretch="fill" margin="10"></Image>
     <StackLayout orientation="horizontal" row="1" padding="10">
-        <Button class = "btn-general" text="Take Picture" (tap)="onTakePictureTap($event)" row="2"
+        <Button class = "btn-general" text="Pick photo" (tap)="pickPhoto($event)" row="2"
             padding="10"></Button>
         <Button class = "btn-general" text="Continue" (tap)="onContinueTap($event)" row="2"
             padding="10"></Button>
