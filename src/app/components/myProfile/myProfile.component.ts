@@ -59,6 +59,10 @@ export class MyProfile implements AfterViewInit, OnInit {
         this.router.navigate(["/beerDetails", name]);
     }
 
+    public navigateUserSettings() {
+        this.router.navigate(["/userSettings"]);
+    }
+    
     public navigateSearchBeer() {
         this.router.navigate(["/searchBeer"]);
     }

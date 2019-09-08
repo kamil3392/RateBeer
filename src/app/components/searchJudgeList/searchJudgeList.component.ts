@@ -136,6 +136,10 @@ class DataItem {
         this.router.navigate(["/myProfile"]);
     }
 
+    public navigateUserSettings() {
+        this.router.navigate(["/userSettings"]);
+    }
+
     public navigateHome() {
         this.router.navigate(["/home"]);
     }

@@ -156,6 +156,10 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
         this.router.navigate(["/myProfile"]);
     }
 
+    public navigateUserSettings() {
+        this.router.navigate(["/userSettings"]);
+    }
+    
     public navigateSearchJudgeDetails() {
         this.router.navigate(["/searchJudgeDetails"]);
     }

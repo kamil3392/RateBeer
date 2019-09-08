@@ -163,6 +163,10 @@ export class JudgeBeerComponent implements OnInit {
         this.router.navigate(["/judgeBeer"]);
     }
 
+    public navigateUserSettings() {
+        this.router.navigate(["/userSettings"]);
+    }
+
     public navigateMyProfile() {
         this.router.navigate(["/myProfile"]);
     }
