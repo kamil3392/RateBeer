@@ -52,8 +52,8 @@ export class UserSettingsComponent implements OnInit {
     private changePassword() {
 
         firebase.sendPasswordResetEmail("kgsoli@tlen.pl")
-            .then(() => alert("xD"))
-            .catch(error => alert("Dx"));
+            .then(() => alert("Email with reset instructions has been sent to: " + ApplicationSettings.getString("email")))
+            .catch(error => alert(error));
 
         // firebase.getCurrentUser()
         // .then(user => alert("User uid: " + user.uid))
@@ -87,20 +87,20 @@ export class UserSettingsComponent implements OnInit {
     }
 
 
-    private updateUsername() {
-        firebase.updateProfile({
-            displayName: 'PAWIAN',
-            // photoURL: 'http://provider.com/profiles/eddyverbruggen.png'
-          }).then(
-              function () {
-                // called when update profile was successful
-                console.log("dupa")
-              },
-              function (errorMessage) {
-                console.log(errorMessage);
-              }
-          );
-    }
+//     private updateUsername() {
+//         firebase.updateProfile({
+//             displayName: 'PAWIAN',
+//             // photoURL: 'http://provider.com/profiles/eddyverbruggen.png'
+//           }).then(
+//               function () {
+//                 // called when update profile was successful
+//                 console.log("dupa")
+//               },
+//               function (errorMessage) {
+//                 console.log(errorMessage);
+//               }
+//           );
+//     }
 
     goHome() {
         // this.router.navigate(["/home"], {clearHistory: true})
