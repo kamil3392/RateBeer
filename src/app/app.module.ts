@@ -19,6 +19,7 @@ import { SearchJudgeDetailsComponent } from "~/app/components/searchJudgeDetails
 import { SearchJudgeListComponent } from "~/app/components/searchJudgeList/searchJudgeList.component";
 import { TakePhotoComponent } from "~/app/components/takePhoto/takePhoto.component";
 import { MyProfile } from "~/app/components/myProfile/myProfile.component";
+import { UserSettingsComponent } from "~/app/components/userSettings/userSettings.component";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { MyProfile } from "~/app/components/myProfile/myProfile.component";
         SearchJudgeDetailsComponent,
         SearchJudgeListComponent,
         TakePhotoComponent,
-        MyProfile
+        MyProfile,
+        UserSettingsComponent
     ],
     providers: [FirebaseService],
     schemas: [

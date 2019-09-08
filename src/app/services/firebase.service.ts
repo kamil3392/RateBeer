@@ -10,6 +10,7 @@ export class FirebaseService {
     beers: any;
 
     checkIn(myCheckIn: any) {
+        
         firebase.push(
             "/beers",
             myCheckIn

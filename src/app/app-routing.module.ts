@@ -13,6 +13,7 @@ import { SearchJudgeDetailsComponent } from "./components/searchJudgeDetails/sea
 import { SearchJudgeListComponent } from "./components/searchJudgeList/searchJudgeList.component";
 import { TakePhotoComponent } from "./components/takePhoto/takePhoto.component";
 import { MyProfile } from "~/app/components/myProfile/myProfile.component";
+import { UserSettingsComponent } from "~/app/components/userSettings/userSettings.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/selectLoginType", pathMatch: "full" },
@@ -27,7 +28,8 @@ const routes: Routes = [
     { path: "searchJudgeDetails", component: SearchJudgeDetailsComponent },
     { path: "searchJudgeList", component: SearchJudgeListComponent },
     { path: "takePhoto", component: TakePhotoComponent },
-    { path: "myProfile", component: MyProfile }
+    { path: "myProfile", component: MyProfile },
+    { path: "userSettings", component: UserSettingsComponent }
 
 ];
 @NgModule({

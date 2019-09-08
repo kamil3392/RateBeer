@@ -58,6 +58,7 @@ export class JudgeBeerComponent implements OnInit {
             this.beerAbv = params["beerAbv"],
             this.beerPlato = params["beerPlato"]
         })
+
     }
 
     ngAfterViewInit() {
@@ -65,41 +66,59 @@ export class JudgeBeerComponent implements OnInit {
     }
 
     postBeerReview() {
-        // this.myLocation = geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 20000 })
-        // console.log("created beer key: " + this.myLocation)
-        this.myCheckIn = {
-            "beerDetails": {
-              "beerName": this.beerName,
-              "breweryName": this.breweryName,
-              "beerStyle": this.beerStyle,
-              "beerAbv": this.beerAbv,
-              "beerPlato": this.beerPlato
-            },
-            "rating": {
-              "totalRating": this.totalRating,
-              "aroma": this.sliderAromaValue,
-              "appearance": this.sliderAppearanceValue,
-              "taste": this.sliderTasteValue,
-              "bitterness": this.sliderBitternessValue,
-              "mouthfeel": this.sliderMouthfeelValue
-            },
-            "checkInDetails": {
-              "other": this.myLocation,
-              "date": Date.now(),
-              "user": appSettings.getString("email"),
-            }
-          }
-        this.firebaseService.checkIn(this.myCheckIn)
 
-        dialogs.confirm({
-            title: "Rating posted",
-            // message: "Do you want to add beer?",
-            okButtonText: "OK",
-        }).then(decision => {
-            if (decision) {
-                this.goHome()
+        //this.myLocation = geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 20000 })
+        // console.log("beer location: " + this.myLocation)
+        if (ApplicationSettings.getBoolean("flagUploadPhoto")) {
+            this.myCheckIn = {
+                "beerDetails": {
+                "beerName": this.beerName,
+                "breweryName": this.breweryName,
+                "beerStyle": this.beerStyle,
+                "beerAbv": this.beerAbv,
+                "beerPlato": this.beerPlato,
+                "imgBeer": ApplicationSettings.getString("imgBeer")
+                },
+                "rating": {
+                "totalRating": this.totalRating,
+                "aroma": this.sliderAromaValue,
+                "appearance": this.sliderAppearanceValue,
+                "taste": this.sliderTasteValue,
+                "bitterness": this.sliderBitternessValue,
+                "mouthfeel": this.sliderMouthfeelValue
+                },
+                "checkInDetails": {
+                "other": this.myLocation,
+                "date": Date.now(),
+                "user": appSettings.getString("email"),
+                }
             }
-        });
+        }   else {
+            this.myCheckIn = {
+                "beerDetails": {
+                  "beerName": this.beerName,
+                  "breweryName": this.breweryName,
+                  "beerStyle": this.beerStyle,
+                  "beerAbv": this.beerAbv,
+                  "beerPlato": this.beerPlato
+                },
+                "rating": {
+                  "totalRating": this.totalRating,
+                  "aroma": this.sliderAromaValue,
+                  "appearance": this.sliderAppearanceValue,
+                  "taste": this.sliderTasteValue,
+                  "bitterness": this.sliderBitternessValue,
+                  "mouthfeel": this.sliderMouthfeelValue
+                },
+                "checkInDetails": {
+                  "other": this.myLocation,
+                  "date": Date.now(),
+                  "user": appSettings.getString("email"),
+                }
+              }
+        }
+        this.firebaseService.checkIn(this.myCheckIn);
+        this.goHome();
     }
 
     goHome() {
@@ -142,6 +161,10 @@ export class JudgeBeerComponent implements OnInit {
 
     public navigateJudgeBeer() {
         this.router.navigate(["/judgeBeer"]);
+    }
+
+    public navigateUserSettings() {
+        this.router.navigate(["/userSettings"]);
     }
 
     public navigateMyProfile() {

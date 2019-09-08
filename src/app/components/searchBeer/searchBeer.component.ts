@@ -94,6 +94,30 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
                     }
                 });
             }
+
+            // if (!flagBeerNotFound) {
+            //     dialogs.confirm({
+            //         title: "Beer not found",
+            //         message: "Do you want to add beer?",
+            //         okButtonText: "Add beer",
+            //         cancelButtonText: "Keep looking"
+            //     }).then(decision => {
+            //         if (decision) {
+            //             dialogs.confirm({
+            //                 title: "Add photo?",
+            //                 message: "Do you want to add photo?",
+            //                 okButtonText: "Add photo",
+            //                 cancelButtonText: "No"
+            //             }).then(decision => {
+            //                 if (decision) {
+            //                     this.navigateTakePhoto()
+            //                 } else {
+            //                     this.navigateAddBeer()
+            //                 }
+            //             });
+            //         }
+            //     });
+            // }
         }
     }
 
@@ -106,6 +130,10 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
         this.arrayItems.forEach(item => {
             this.myItems.push(item);
         });
+    }
+
+    public navigateTakePhoto() {
+        this.router.navigate(["/takePhoto"])
     }
 
     public goBack() {
@@ -128,6 +156,10 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
         this.router.navigate(["/myProfile"]);
     }
 
+    public navigateUserSettings() {
+        this.router.navigate(["/userSettings"]);
+    }
+    
     public navigateSearchJudgeDetails() {
         this.router.navigate(["/searchJudgeDetails"]);
     }
