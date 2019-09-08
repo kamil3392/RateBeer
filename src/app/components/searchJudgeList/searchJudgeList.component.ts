@@ -18,7 +18,7 @@ class DataItem {
 
 
     @Component({
-        selector: 'ns-search-airport',
+        selector: 'ns-judge-list',
         templateUrl: 'searchJudgeList.component.html',
         styleUrls: ['searchJudgeList.component.css'],
         // changeDetection: ChangeDetectionStrategy.OnPush

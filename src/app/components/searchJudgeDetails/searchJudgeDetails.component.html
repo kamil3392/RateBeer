@@ -18,119 +18,34 @@
         </ScrollView>
     </GridLayout>
 
+
         <ScrollView tkMainContent>
             <StackLayout>
-                <GridLayout rows="22, 20,28, 16, 24,28, 16, 24,28, 16, 24,28" columns="32,*,32,24,*,32,32" >
+                <GridLayout rows="25,25,33,40" columns="32,*,32,24,* " >
                 <Label row="1" col="1" colSpan="5" text="Judge name" class="title-label"></Label>
-                <Label row="2" col="1" colSpan="5" [text]="judgeSearch" (tap)="onOpenSearchAirportTap(true)" class="scf-input"></Label>
+                <Label row="2" col="1" colSpan="5" [text]="judgeSearch" (tap)="onOpenSearchJudgeTap(true)" class="scf-input"></Label>
                 <Image row="1" col="5" rowSpan="2" class="icon-next" src="images/baseline_navigate_next_black_48.png"
-                  (tap)="onOpenSearchAirportTap(true)"></Image>
+                  (tap)="onOpenSearchJudgeTap(true)"></Image>
                 </GridLayout>
+
+                <Label text="{{user.email}}" class="label-category"></Label>
+
+                <GridLayout margin="50" verticalAlignment="center" rows="*, *" columns="*, *" marginTop="80" class="form">
+
+                    <Button row="0" col="0" class="btn-general" text="CHECK-INS"
+                        (tap)="navigateHome()"></Button>
+                    <Button row="0" col="1" class="btn-general" text="BADGES"
+                        (tap)="navigateHome()"></Button>
+
+                    <Label row="1" col="0" text="{{beerData.length}}" class="label-category"></Label>
+                    <Label row="1" col="1" text="liczba odznak" class="label-category"></Label>
+
+                </GridLayout>
+
             </StackLayout>
+
         </ScrollView>
-<!--
-        <ScrollView>
-                <StackLayout margin="50" verticalAlignment="center">
-                    <Label text="{{user.email}}" class="label-category"></Label>
 
-                    <GridLayout rows="*, *" columns="*, *" marginTop="80" class="form">
-
-                        <Button row="0" col="0" class="btn-general" text="My CHECK-INS"
-                            (tap)="navigateHome()"></Button>
-                        <Button row="0" col="1" class="btn-general" text="MY BADGES"
-                            (tap)="navigateHome()"></Button>
-
-                        <Label row="1" col="0" text="{{beerData.length}}" class="label-category"></Label>
-                        <Label row="1" col="1" text="liczba odznak" class="label-category"></Label>
-
-                    </GridLayout>
-
-                </StackLayout>
-            </ScrollView> -->
 </RadSideDrawer>
 
 
-    <!-- <GridLayout rows="22, 20,28, 16, 24,28, 16, 24,28, 16, 24,28" columns="32,*,32,24,*,32,32"
-    class="body scf-card animate-bounceInLeft-delay-0ms">
-
-    <Label row="1" col="1" colSpan="5" text="From" class="title-label"></Label>
-    <Label row="2" col="1" colSpan="5" [text]="fromAirport" (tap)="onOpenSearchAirportTap(true)"
-        class="scf-input"></Label>
-    <Image row="1" col="5" rowSpan="2" class="icon-next" src="../images/baseline_navigate_next_black_48.png"
-        (tap)="onOpenSearchAirportTap(true)"></Image> -->
-
-    <!-- <Label row="4" col="1" colSpan="5" text="To" class="title-label"></Label>
-    <Label row="5" col="1" colSpan="5" [text]="toAirport" (tap)="onOpenSearchAirportTap(false)"
-        class="scf-input"></Label>
-
-    <Image row="4" col="5" rowSpan="2" class="icon-next" src="../images/baseline_navigate_next_black_48.png"
-        (tap)="onOpenSearchAirportTap(false)"></Image> -->
-
-    <!-- <Label row="7" col="1" colSpan="2" text="Depart" class="title-label"></Label>
-
-    <Label row="8" col="1" colSpan="2" text='{{ departureDate | date:"y/M/d" }}'
-        class="scf-input" (tap)="onOpenSelectDate(true)"></Label>
-
-    <Label row="7" col="4" colSpan="2" text="Return" class="title-label"></Label>
-
-    <Label row="8" col="4" colSpan="2" text='{{ returnDate | date:"y/M/d" }}'
-        class="scf-input" (tap)="onOpenSelectDate(false)"></Label>
-
-    <Label row="10" col="1" colSpan="5" text="Cabin" class="title-label"></Label>
-
-    <Label row="11" col="1" colSpan="5" hint="Economy" class="scf-input"
-        editable="false" [text]="typeOfService" (tap)="onTypeServiceTap()"></Label>
-
-    <Image row="11" col="5" class="icon-next" src="~/images/baseline_keyboard_arrow_down_black_48.png"
-        (tap)="onTypeServiceTap()"></Image> -->
-
-
-<!--
-    <StackLayout tkMainContent>
-        <SearchBar row="0" hint="Search for a Judge and press enter" (clear)="onClear($event)" (submit)="onSubmit($event)"></SearchBar>
-        <ListView row="1" [items]="myItems" class="list-group">
-            <ng-template let-item="item">
-                <GridLayout class="item list-group-item">
-                    <Label [text]="item.name" class="list-group-item-heading"></Label>
-                </GridLayout>
-            </ng-template>
-        </ListView>
-    </StackLayout>
-</RadSideDrawer> -->
-
-
-                                <!-- TO DO  -->
-
-<!-- <GridLayout rows="auto,*" sdkExampleTitle sdkToggleNavButton>
-    <SearchBar row="0" hint="Search" (clear)="onClear($event)" (textChange)="onTextChange($event)" (loaded)="searchBarLoaded($event)" (submit)="onSubmit($event)"
-    style=" color:#a38e5a" textFieldHintColor="lightgray" textFieldBackgroundColor="beige"></SearchBar>
-    <Label row="1" [text]="searchPhrase" textWrap="true" class="h3 p-15 text-center"></Label>
-    <ListView row="1" [items]="myItems" class="list-group">
-    <ng-template let-comment="item" let-i="index" let-odd="odd" let-even="even">
-        <GridLayout class="item list-group-item">
-            <Label [text]="item.name" class="list-group-item-heading"></Label>
-        </GridLayout>
-    </ng-template>
-</ListView>
-</GridLayout> -->
-
-<!-- <GridLayout rows="auto,*">
-    <ListView row="1" [items]="_batches" (itemTap)="onItemTap($event)" class="list-group">
-        <ng-template let-comment="item" let-i="index" let-odd="odd" let-even="even"> -->
-            <!-- The item template can only have a single root view container (e.g. GridLayout, StackLayout, etc.)-->
-            <!-- <StackLayout orientation="horizontal" class="list-group-item">
-                <StackLayout width="200" height="45">
-                    <Label horizontalAlignment="left" [text]="comment.title" textWrap="true"></Label>
-                    <Label horizontalAlignment="left" [text]="comment.title" textWrap="true"></Label>
-                </StackLayout>
-                <StackLayout width="60">
-                    <Button horizontalAlignment="right" class="edit-button" text=""
-                        (tap)="EditItem(comment.id)"></Button>
-                </StackLayout>
-                <StackLayout horizontalAlignment="right" width="60">
-                    <Button class="delete-button" text="" (tap)="DeleteItem(comment.id)"></Button>
-                </StackLayout>
-            </StackLayout>
-        </ng-template>
-    </ListView>
-</GridLayout> -->

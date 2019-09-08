@@ -25,7 +25,7 @@ class DataItem {
     styleUrls: ['searchJudgeDetails.component.css'],
     //changeDetection: ChangeDetectionStrategy.OnPush
     providers: [ModalDialogService, BreweryGetService],
-    selector: 'ns-book-flight'
+    selector: 'ns-judge-details'
 })
 
     export class SearchJudgeDetailsComponent implements OnInit, AfterViewInit {
@@ -59,12 +59,8 @@ class DataItem {
             this.extractData();
         }
 
-        ngAfterViewInit() {
-            this.drawer = this.drawerComponent.sideDrawer;
-        }
 
-
-        onOpenSearchAirportTap(isFrom: boolean): void {
+        onOpenSearchJudgeTap(isFrom: boolean): void {
             const options: ModalDialogOptions = {
                 viewContainerRef: this._vcRef,
                 context: { isFrom },
@@ -80,22 +76,31 @@ class DataItem {
                 });
             }
 
-        fetchCurrentUser() {
-        this.firebaseService.getCurrentUser().then((result: any) => {
-            this.user = JSON.parse(result);
-            });
-        }
 
-        private extractData() {
-            this.firebaseService.searchBeers(ApplicationSettings.getString("email"));
-            let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"));
-            this.beerData = Object.keys(obj.value).map(e=>obj.value[e]);
-        }
+    public goBack() {
+        this.router.navigate(["/home", false], {clearHistory: true})
+    }
 
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+    }
 
-    // public goBack() {
-    //     this.router.navigate(["/home", false], {clearHistory: true})
-    // }
+    public navigateAddBeer() {
+        this.router.navigate(["/addBeer"]);
+    }
+
+    public navigateTakePhoto() {
+        this.router.navigate(["/takePhoto"]);
+    }
+
+    public navigateHome() {
+        this.router.navigate(["/home"]);
+    }
+
+    public logout() {
+        ApplicationSettings.remove("authenticated");
+        this.router.navigate(["/selectLoginType"], { clearHistory: true });
+    }
 
     public openDrawer() {
         this.drawer.showDrawer();
@@ -113,20 +118,25 @@ class DataItem {
         this.router.navigate(["/searchBeer"]);
     }
 
+    public  navigateSearchJudgeDetails() {
+        this.router.navigate(["/searchJudgeDetails"]);
+    }
+
     public navigateMyProfile() {
         this.router.navigate(["/myProfile"]);
     }
 
-    public navigateHome() {
-        this.router.navigate(["/home"]);
+
+
+    fetchCurrentUser() {
+        this.firebaseService.getCurrentUser().then((result: any) => {
+            this.user = JSON.parse(result);
+        });
     }
 
-    public logout() {
-        ApplicationSettings.remove("authenticated");
-        this.router.navigate(["/selectLoginType"], { clearHistory: true });
-    }
-
-    public navigateJudgeBeer() {
-        this.router.navigate(["/judgeBeer"]);
+    private extractData() {
+        this.firebaseService.searchBeers(ApplicationSettings.getString("email"));
+        let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"));
+        this.beerData = Object.keys(obj.value).map(e=>obj.value[e]);
     }
 }

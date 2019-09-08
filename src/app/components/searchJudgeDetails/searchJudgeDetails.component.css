@@ -7,7 +7,8 @@
     border-bottom-width: 1;
     border-bottom-color: #eeeeee;
     padding: 4 32 4 0;
-    height: 28;
+    height: 33;
+    font-size: 16;
 }
 
 .btn-return {
@@ -26,7 +27,7 @@
 }
 
 .title-label {
-    font-size: 15;
+    font-size: 18;
     text-align: left;
     color: #FF6F00;
 }

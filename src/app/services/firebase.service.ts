@@ -46,6 +46,7 @@ export class FirebaseService {
         let resultFoundFunction = function(result) {
             console.log(JSON.stringify(result))
         }
+
         firebase.query(resultFoundFunction,
             "/users",
             {
