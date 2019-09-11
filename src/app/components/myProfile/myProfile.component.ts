@@ -16,6 +16,7 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class MyProfile implements AfterViewInit, OnInit {
     public beerData: Array<any>;
+    public badgesCount: number;
     @ViewChild(RadSideDrawerComponent)
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
@@ -91,5 +92,7 @@ export class MyProfile implements AfterViewInit, OnInit {
         this.firebaseService.searchBeers(this.userProfileEmail);
         let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"));
         this.beerData = Object.keys(obj.value).map(e=>obj.value[e]);
+        this.badgesCount = Math.floor(this.beerData.length / 5);
+
     }
 }
