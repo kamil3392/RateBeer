@@ -21,7 +21,7 @@ export class BreweryGetService {
 
     getBeerData(name) {
         let headers = BreweryGetService.createRequestHeader();
-        let params = this.setNameParam(name)
+        let params = this.setNameParam(name);
         return this.http.get(this.serverUrl, { headers: headers, params: params });
     }
 

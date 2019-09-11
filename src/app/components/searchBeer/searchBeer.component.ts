@@ -1,19 +1,21 @@
 import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef} from "@angular/core";
-import { RouterExtensions } from "nativescript-angular/router";
-import { NavigationExtras } from "@angular/router";
-import { SearchBar } from "tns-core-modules/ui/search-bar";
-import { ObservableArray } from "tns-core-modules/data/observable-array";
+import {RouterExtensions} from "nativescript-angular/router";
+import {NavigationExtras} from "@angular/router";
+import {SearchBar} from "tns-core-modules/ui/search-bar";
+import {ObservableArray} from "tns-core-modules/data/observable-array";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
 import {RadSideDrawer} from "nativescript-ui-sidedrawer";
 import * as ApplicationSettings from "tns-core-modules/application-settings";
 
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import {FirebaseService} from '../../services/firebase.service';
-import { BreweryGetService } from "~/app/services/brewery-get.service";
+import {BreweryGetService} from "~/app/services/brewery-get.service";
+import {empty} from "rxjs/internal/Observer";
 
 
 class DataItem {
-    constructor(public name: string) { }
+    constructor(public name: string) {
+    }
 }
 
 @Component({
@@ -28,15 +30,19 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
     dialogOpen = false;
-    private breweryGetService: BreweryGetService
-    constructor(private router: RouterExtensions, private firebaseService: FirebaseService, private myService: BreweryGetService, private _changeDetectionRef: ChangeDetectorRef) {}
+    private breweryGetService: BreweryGetService;
+    public breweryBeerData: any;
+
+    constructor(private router: RouterExtensions, private firebaseService: FirebaseService, private myService: BreweryGetService, private _changeDetectionRef: ChangeDetectorRef) {
+    }
 
     private beerName: string;
     private breweryName: string;
     private beerStyle: string;
     private beerAbv: string; //zawartosc alkoholu
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+    }
 
     public navigateJudgeBeer() {
         let navigationExtras: NavigationExtras = {
@@ -62,7 +68,7 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     //     this.drawer = this.drawerComponent.sideDrawer;
     // }
 
-                            //    TO DO
+    //    TO DO
 
     // constructor() {
     //     this.arrayItems.push(new DataItem("Beer_1"));
@@ -83,41 +89,45 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
         this.subscription.unsubscribe();
     }
 
-    private extractSingleBeerData(beerName) {
+    private extractSingleBeerData(beerName): any{
         this.myService.getBeerData(beerName)
             .subscribe((result) => {
-                console.log(result)
-                return(result)
+                this.breweryBeerData = result;
+                return (result)
             }, (error) => {
                 console.log(error);
+                return null;
             });
     }
 
     private extractData() {
         this.myService.getData()
             .subscribe((result) => {
-                console.log(result);
-            }, (error) => {
-                console.log(error);
-            }
-        );
+                    console.log(result);
+                }, (error) => {
+                    console.log(error);
+                }
+            );
     }
 
     public onSubmit(args) {
         let searchBar = <SearchBar>args.object;
         let searchValue = searchBar.text.toLowerCase();
-        let flagBeerFound = false
+        let flagBeerFound = false;
 
         this.myItems = new ObservableArray<DataItem>();
         if (searchValue !== "") {
 
-            // wyszukaj tu jedno piwo i jesli znajdziesz to ustaw flaagBeerFound na true
-            
-            if (flagBeerFound) {
-                // przypisz do zmiennych this,beerName, this.breweryName, etc. parametry z wyniku wyszukiwania piwa
-            } else {
+            this.myService.getBeerData(searchValue)
+                .subscribe((result) =>{
+                    this.breweryBeerData = result;
+                },(error) =>{})
+
+            // if (this.breweryBeerData) {
+            //     // przypisz do zmiennych this,beerName, this.breweryName, etc. parametry z wyniku wyszukiwania piwa
+            // } else {
                 dialogs.confirm({
-                    title: "Beer not found",
+                    title: "Beer find",
                     message: "Do you want to add beer?",
                     okButtonText: "Add beer",
                     cancelButtonText: "Keep looking"
@@ -126,7 +136,7 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
                         this.navigateAddBeer()
                     }
                 });
-            }
+            // }
 
             // if (!flagBeerNotFound) {
             //     dialogs.confirm({
@@ -247,7 +257,7 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     public navigateUserSettings() {
         this.router.navigate(["/userSettings"]);
     }
-    
+
     public navigateSearchJudgeDetails() {
         this.router.navigate(["/searchJudgeDetails"]);
     }
@@ -258,7 +268,7 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
 
     public logout() {
         ApplicationSettings.remove("authenticated");
-        this.router.navigate(["/selectLoginType"], { clearHistory: true });
+        this.router.navigate(["/selectLoginType"], {clearHistory: true});
     }
 
     public navigateAddBeer() {

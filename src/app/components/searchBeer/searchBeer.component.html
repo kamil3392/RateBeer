@@ -22,10 +22,23 @@
 
     <StackLayout tkMainContent>
         <SearchBar row="0" hint="Search for a beer and press enter" (clear)="onClear($event)" (submit)="onSubmit($event)"></SearchBar>
-        <ListView row="1" [items]="myItems" class="list-group">
+        <ListView row="1" [items]="breweryBeerData.data" class="list-group">
             <ng-template let-item="item">
-                <GridLayout class="item list-group-item">
-                    <Label [text]="item.name" class="list-group-item-heading"></Label>
+                <GridLayout rows="*, *, *, *, *" columns="*, *" class="item list-group-item">
+                    <Label row="0" col="0" class="label-category" text="Beer"></Label>
+                    <Label row="0" col="1" [text]="item.name" class="list-group-item-heading"></Label>
+
+                    <Label row="1" col="0" class="label-category" text="Beer id"></Label>
+                    <Label row="1" col="1" [text]="item.id" class="list-group-item-heading"></Label>
+
+                    <Label row="2" col="0" class="label-category" text="Beer abv"></Label>
+                    <Label row="2" col="1" [text]="item.abv" class="list-group-item-heading"></Label>
+
+                    <Label row="3" col="0" class="label-category" text="Beer ibu"></Label>
+                    <Label row="3" col="1" [text]="item.ibu" class="list-group-item-heading"></Label>
+
+                    <Label row="4" col="0" class="label-category" text="Beer status"></Label>
+                    <Label row="4" col="1" [text]="item.status" class="list-group-item-heading"></Label>
                 </GridLayout>
             </ng-template>
         </ListView>
