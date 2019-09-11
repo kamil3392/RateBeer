@@ -34,11 +34,11 @@ export class BreweryGetService {
     }
 
     private createRequestParams() {
-        return new HttpParams().set('styleId', '98').set('key', '4b6937dc1eeebb88e49c93e08ed81f03');
+        return new HttpParams().set('styleId', '98').set('key', '6cfdfe6d1288199bdda469567699a6c4');
     }
 
     private setNameParam(name) {
-        return new HttpParams().set('name', name).set('key', '4b6937dc1eeebb88e49c93e08ed81f03');
+        return new HttpParams().set('name', name).set('key', '6cfdfe6d1288199bdda469567699a6c4');
     }
 
 }

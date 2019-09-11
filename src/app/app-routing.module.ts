@@ -14,6 +14,7 @@ import { SearchJudgeListComponent } from "./components/searchJudgeList/searchJud
 import { TakePhotoComponent } from "./components/takePhoto/takePhoto.component";
 import { MyProfile } from "~/app/components/myProfile/myProfile.component";
 import { UserSettingsComponent } from "~/app/components/userSettings/userSettings.component";
+import { SearchJudgeComponent } from "~/app/components/searchJudgeV2/searchJudgeV2.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/selectLoginType", pathMatch: "full" },
@@ -29,7 +30,9 @@ const routes: Routes = [
     { path: "searchJudgeList", component: SearchJudgeListComponent },
     { path: "takePhoto", component: TakePhotoComponent },
     { path: "myProfile", component: MyProfile },
-    { path: "userSettings", component: UserSettingsComponent }
+    { path: "userSettings", component: UserSettingsComponent },
+    { path: "searchJudgeV2", component: SearchJudgeComponent },
+    
 
 ];
 @NgModule({

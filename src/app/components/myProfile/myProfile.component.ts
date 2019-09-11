@@ -5,6 +5,7 @@ import { BreweryGetService } from "~/app/services/brewery-get.service";
 import {RadSideDrawerComponent} from "nativescript-ui-sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
 import {FirebaseService} from '../../services/firebase.service';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     moduleId: module.id,
@@ -19,7 +20,16 @@ export class MyProfile implements AfterViewInit, OnInit {
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
     private user: any;
-    public constructor(private router: RouterExtensions, private _changeDetectionRef: ChangeDetectorRef, private firebaseService: FirebaseService)  { }
+    private userProfileEmail: string;s
+    public constructor(private router: RouterExtensions, private _changeDetectionRef: ChangeDetectorRef, private firebaseService: FirebaseService, private route: ActivatedRoute)  {
+        this.route.queryParams.subscribe(params => {
+            this.userProfileEmail = params["email"]
+        })
+        if (this.userProfileEmail) {
+        } else {
+            this.userProfileEmail = ApplicationSettings.getString("email");
+        }
+    }
 
     public ngOnInit() {
        this.fetchCurrentUser();
@@ -68,7 +78,6 @@ export class MyProfile implements AfterViewInit, OnInit {
     }
 
     public  navigateSearchJudgeDetails() {
-        this.router.navigate(["/searchJudgeDetails"]);
     }
 
     fetchCurrentUser() {
@@ -78,7 +87,8 @@ export class MyProfile implements AfterViewInit, OnInit {
     }
 
     private extractData() {
-        this.firebaseService.searchBeers(ApplicationSettings.getString("email"));
+        // this.firebaseService.searchBeers(ApplicationSettings.getString("email"));
+        this.firebaseService.searchBeers(this.userProfileEmail);
         let obj = JSON.parse(ApplicationSettings.getString("listCheckIns"));
         this.beerData = Object.keys(obj.value).map(e=>obj.value[e]);
     }

@@ -1,5 +1,5 @@
 import * as firebase from "nativescript-plugin-firebase";
-import {Injectable, NgZone} from "@angular/core";
+import {Injectable, NgZone, Output} from "@angular/core";
 import {User} from '../models/user.model';
 import * as appSettings from "tns-core-modules/application-settings";
 
@@ -41,14 +41,16 @@ export class FirebaseService {
             alert(errorMessage);
         });
     }
-
+    
     searchJudge(email) {
         console.log("Search judge criteria: " + email)
         let resultFoundFunction = function(result) {
-            console.log(JSON.stringify(result))
+            // console.log(JSON.stringify(result));
+            // appSettings.setString("resultJudgeSearch", JSON.stringify(result))
+            // return result
         }
 
-        firebase.query(resultFoundFunction,
+        return firebase.query(resultFoundFunction,
             "/users",
             {
                 singleEvent: true,
@@ -67,8 +69,8 @@ export class FirebaseService {
                     }
                 ]
             }
-            )
-    }
+        )
+    };
 
     searchCheckIn(checkInID) {
         console.log("Search check in criteria: " + checkInID)
@@ -110,16 +112,20 @@ export class FirebaseService {
                     type: firebase.QueryOrderByType.CHILD,
                     value: 'checkInDetails/user'
                 },
-                ranges: [
-                    {
-                        type: firebase.QueryRangeType.START_AT,
-                        value: email
-                    },
-                    {
-                        type: firebase.QueryRangeType.END_AT,
-                        value: email
-                    }
-                ]
+                range: {
+                    type: firebase.QueryRangeType.EQUAL_TO,
+                    value: email
+                }
+                // ranges: [
+                //     {
+                //         type: firebase.QueryRangeType.START_AT,
+                //         value: email
+                //     },
+                //     {
+                //         type: firebase.QueryRangeType.END_AT,
+                //         value: email
+                //     }
+                // ]
             }
             )
     }

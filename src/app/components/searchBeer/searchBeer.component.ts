@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectionStrategy} from "@angular/core";
+import {AfterViewInit, Component, OnInit, ViewChild, ChangeDetectionStrategy, ChangeDetectorRef} from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { NavigationExtras } from "@angular/router";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
@@ -9,6 +9,8 @@ import * as ApplicationSettings from "tns-core-modules/application-settings";
 
 import * as dialogs from "tns-core-modules/ui/dialogs";
 import {FirebaseService} from '../../services/firebase.service';
+import { BreweryGetService } from "~/app/services/brewery-get.service";
+
 
 class DataItem {
     constructor(public name: string) { }
@@ -17,7 +19,8 @@ class DataItem {
 @Component({
     moduleId: module.id,
     templateUrl: "./searchBeer.component.html",
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [BreweryGetService],
 })
 export class SearchBeerComponent implements OnInit, AfterViewInit {
 
@@ -25,17 +28,23 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     public drawerComponent: RadSideDrawerComponent;
     private drawer: RadSideDrawer;
     dialogOpen = false;
-    constructor(private router: RouterExtensions, private firebaseService: FirebaseService) {}
+    private breweryGetService: BreweryGetService
+    constructor(private router: RouterExtensions, private firebaseService: FirebaseService, private myService: BreweryGetService, private _changeDetectionRef: ChangeDetectorRef) {}
+
+    private beerName: string;
+    private breweryName: string;
+    private beerStyle: string;
+    private beerAbv: string; //zawartosc alkoholu
 
     ngOnInit(): void { }
 
     public navigateJudgeBeer() {
         let navigationExtras: NavigationExtras = {
             queryParams: {
-                "beerName": 0, //wstaw tu zmienna
-                "breweryName": 0, //wstaw tu zmienna
-                "beerStyle": 0, //wstaw tu zmienna
-                "beerAbv": 0, //wstaw tu zmienna
+                "beerName": this.beerName, //wstaw tu zmienna
+                "breweryName": this.breweryName, //wstaw tu zmienna
+                "beerStyle": this.beerStyle, //wstaw tu zmienna
+                "beerAbv": this.beerAbv, //wstaw tu zmienna
                 "beerPlato": 0 //wstaw tu zmienna
             }
         }
@@ -67,22 +76,46 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     //     this.myItems = new ObservableArray<DataItem>(this.arrayItems);
     // }
 
+    private connections: any
+    private subscription: any
+
+    ngOnDestry() {
+        this.subscription.unsubscribe();
+    }
+
+    private extractSingleBeerData(beerName) {
+        this.myService.getBeerData(beerName)
+            .subscribe((result) => {
+                console.log(result)
+                return(result)
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
+    private extractData() {
+        this.myService.getData()
+            .subscribe((result) => {
+                console.log(result);
+            }, (error) => {
+                console.log(error);
+            }
+        );
+    }
+
     public onSubmit(args) {
         let searchBar = <SearchBar>args.object;
         let searchValue = searchBar.text.toLowerCase();
-        let flagBeerNotFound = false
+        let flagBeerFound = false
 
         this.myItems = new ObservableArray<DataItem>();
         if (searchValue !== "") {
-            for (let i = 0; i < this.arrayItems.length; i++) {
-                if (this.arrayItems[i].name.toLowerCase().indexOf(searchValue) !== -1) {
-                    this.myItems.push(this.arrayItems[i]);
-                    flagBeerNotFound = true
-                }
 
-            }
-            console.log(flagBeerNotFound)
-            if (!flagBeerNotFound) {
+            // wyszukaj tu jedno piwo i jesli znajdziesz to ustaw flaagBeerFound na true
+            
+            if (flagBeerFound) {
+                // przypisz do zmiennych this,beerName, this.breweryName, etc. parametry z wyniku wyszukiwania piwa
+            } else {
                 dialogs.confirm({
                     title: "Beer not found",
                     message: "Do you want to add beer?",
@@ -120,6 +153,61 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
             // }
         }
     }
+
+    // public onSubmit(args) {
+    //     let searchBar = <SearchBar>args.object;
+    //     let searchValue = searchBar.text.toLowerCase();
+    //     let flagBeerNotFound = false
+
+    //     this.myItems = new ObservableArray<DataItem>();
+    //     if (searchValue !== "") {
+
+    //         for (let i = 0; i < this.arrayItems.length; i++) {
+    //             if (this.arrayItems[i].name.toLowerCase().indexOf(searchValue) !== -1) {
+    //                 this.myItems.push(this.arrayItems[i]);
+    //                 flagBeerNotFound = true
+    //             }
+
+    //         }
+    //         console.log(flagBeerNotFound)
+    //         if (!flagBeerNotFound) {
+    //             dialogs.confirm({
+    //                 title: "Beer not found",
+    //                 message: "Do you want to add beer?",
+    //                 okButtonText: "Add beer",
+    //                 cancelButtonText: "Keep looking"
+    //             }).then(decision => {
+    //                 if (decision) {
+    //                     this.navigateAddBeer()
+    //                 }
+    //             });
+    //         }
+
+    //         // if (!flagBeerNotFound) {
+    //         //     dialogs.confirm({
+    //         //         title: "Beer not found",
+    //         //         message: "Do you want to add beer?",
+    //         //         okButtonText: "Add beer",
+    //         //         cancelButtonText: "Keep looking"
+    //         //     }).then(decision => {
+    //         //         if (decision) {
+    //         //             dialogs.confirm({
+    //         //                 title: "Add photo?",
+    //         //                 message: "Do you want to add photo?",
+    //         //                 okButtonText: "Add photo",
+    //         //                 cancelButtonText: "No"
+    //         //             }).then(decision => {
+    //         //                 if (decision) {
+    //         //                     this.navigateTakePhoto()
+    //         //                 } else {
+    //         //                     this.navigateAddBeer()
+    //         //                 }
+    //         //             });
+    //         //         }
+    //         //     });
+    //         // }
+    //     }
+    // }
 
     public onClear(args) {
         let searchBar = <SearchBar>args.object;
