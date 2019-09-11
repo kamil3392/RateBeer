@@ -27,3 +27,21 @@ Wszelkie prace nad projektem zostały podzielone na zadania dla poszczególnych 
 Diagram przypadków użycia:
 ![Image of Yaktocat](https://imagizer.imageshack.com/img922/682/4TjqFG.jpg)
 
+### Logowanie
+ 
+![Image of Yaktocat](https://images92.fotosik.pl/244/7e27a82119651920gen.jpg)
+ 
+### Szczegóły ocenionego piwa
+ 
+![Image of Yaktocat](https://images89.fotosik.pl/243/050e438796054cd2gen.jpg)
+ 
+### Lista ocenionych piw
+![Image of Yaktocat](https://images91.fotosik.pl/243/86e071b77221c051gen.jpg)
+ 
+### Ocena piwa
+ 
+![Image of Yaktocat](https://images91.fotosik.pl/243/b6da363b01d2cb83gen.jpg)
+ 
+### Informacje o użytkowniku
+ 
+![Image of Yaktocat](https://images90.fotosik.pl/243/cf131334cea43fd7gen.jpg)
