@@ -28,8 +28,8 @@
                     <Label row="0" col="0" class="label-category" text="Beer"></Label>
                     <Label row="0" col="1" [text]="item.name" class="list-group-item-heading"></Label>
 
-                    <Label row="1" col="0" class="label-category" text="Beer id"></Label>
-                    <Label row="1" col="1" [text]="item.id" class="list-group-item-heading"></Label>
+                    <Label row="1" col="0" class="label-category" text="Beer status"></Label>
+                    <Label row="1" col="1" [text]="item.status" class="list-group-item-heading"></Label>
 
                     <Label row="2" col="0" class="label-category" text="Beer abv"></Label>
                     <Label row="2" col="1" [text]="item.abv" class="list-group-item-heading"></Label>
@@ -37,11 +37,12 @@
                     <Label row="3" col="0" class="label-category" text="Beer ibu"></Label>
                     <Label row="3" col="1" [text]="item.ibu" class="list-group-item-heading"></Label>
 
-                    <Label row="4" col="0" class="label-category" text="Beer status"></Label>
-                    <Label row="4" col="1" [text]="item.status" class="list-group-item-heading"></Label>
+                    <Label row="4" col="0" class="label-category" text="Beer description"></Label>
+                    <Label row="4" col="1" [text]="item.description" class="list-group-item-heading"></Label>
                 </GridLayout>
             </ng-template>
         </ListView>
+        <Button row="2" class="btn-check-in" text="Continue" (tap)="clickContinue()"></Button>
     </StackLayout>
 
 </RadSideDrawer>

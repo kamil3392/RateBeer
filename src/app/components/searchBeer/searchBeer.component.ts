@@ -44,11 +44,28 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
     }
 
+    public clickContinue() {
+        if (this.beerName) {
+            this.navigateJudgeBeer()
+        } else {
+            dialogs.confirm({
+                title: "Beer find",
+                message: "Do you want to add beer?",
+                okButtonText: "Add beer",
+                cancelButtonText: "Keep looking"
+            }).then(decision => {
+                if (decision) {
+                    this.navigateAddBeer();
+                };
+            })
+        }
+    }
+
     public navigateJudgeBeer() {
         let navigationExtras: NavigationExtras = {
             queryParams: {
                 "beerName": this.beerName, //wstaw tu zmienna
-                "breweryName": this.breweryName, //wstaw tu zmienna
+                "breweryName": "unknown", //wstaw tu zmienna
                 "beerStyle": this.beerStyle, //wstaw tu zmienna
                 "beerAbv": this.beerAbv, //wstaw tu zmienna
                 "beerPlato": 0 //wstaw tu zmienna
@@ -120,22 +137,33 @@ export class SearchBeerComponent implements OnInit, AfterViewInit {
 
             this.myService.getBeerData(searchValue)
                 .subscribe((result) =>{
-                    this.breweryBeerData = result;
-                },(error) =>{})
+                    if (result.totalResults !== 0) {
+                        this.breweryBeerData = result;
+                        console.log(result)
+                        console.log("Name: " + result.data[0].name)
+                        this.beerName = result.data[0].name
+                        console.log("Style: " + result.data[0].style.category.name)
+                        this.beerStyle = result.data[0].style.category.name
+                        console.log("ABV: " + result.data[0].abv)
+                        this.beerAbv = result.data[0].abv
+                    }
+                },(error) =>{
+                    console.log(error)
+                })
 
             // if (this.breweryBeerData) {
             //     // przypisz do zmiennych this,beerName, this.breweryName, etc. parametry z wyniku wyszukiwania piwa
             // } else {
-                dialogs.confirm({
-                    title: "Beer find",
-                    message: "Do you want to add beer?",
-                    okButtonText: "Add beer",
-                    cancelButtonText: "Keep looking"
-                }).then(decision => {
-                    if (decision) {
-                        this.navigateAddBeer()
-                    }
-                });
+                // dialogs.confirm({
+                //     title: "Beer find",
+                //     message: "Do you want to add beer?",
+                //     okButtonText: "Add beer",
+                //     cancelButtonText: "Keep looking"
+                // }).then(decision => {
+                //     if (decision) {
+                //         this.navigateAddBeer()
+                //     }
+                // });
             // }
 
             // if (!flagBeerNotFound) {
