@@ -10,7 +10,7 @@ Aplikacja dla fanów piwa rzemieślniczego pozwalająca na ocenianie pitych trun
 * Jakub Koziara
 
 ### Cel i założenia aplikacji
-Naszym celem jest stworzenie aplikacji dla ludzi, którzy kochają piwo. Umożliwi ona przeglądanie, ocenę, dodawanie swoich ulubionych piw lub takich, które mieliśmy okazje spróbować. W ramach aplikacji możliwe będzie wymienianie się doświadczeniami i opiniami z innymi użytkownikami. Aplikacja pozwala na założenie swojego indywidualnego konta użytkownika lub skorzystanie ze swojego istniejącego konta w serwisie Facebook.
+Naszym celem jest stworzenie aplikacji dla ludzi, którzy kochają piwo. Umożliwi ona przeglądanie, ocenę, dodawanie swoich ulubionych piw lub takich, które mieliśmy okazje spróbować. W ramach aplikacji możliwe będzie wymienianie się doświadczeniami i opiniami z innymi użytkownikami. Aplikacja pozwala na założenie swojego indywidualnego konta użytkownika lub skorzystanie ze swojego istniejącego konta w serwisie Facebook. Co wyroznia aplikacje, na tle podobnych produktow na rynku, jest mozliwosc wcielenie sie w profesjonalnego sedziego piwnego i ocenianie piw korzystajac z oficjalnych kryteriow Polskiego Stowarzystwa Piwowarow Domowych.
 
 ### Prototyp aplikacji
 
@@ -33,15 +33,19 @@ Diagram przypadków użycia:
  
 ### Szczegóły ocenionego piwa
  
-![Image of Yaktocat](https://images89.fotosik.pl/243/050e438796054cd2gen.jpg)
+![Image of Yaktocat](https://i.ibb.co/wWP26Ps/detalepiwa.png)
  
 ### Lista ocenionych piw
 ![Image of Yaktocat](https://images91.fotosik.pl/243/86e071b77221c051gen.jpg)
  
 ### Ocena piwa
  
-![Image of Yaktocat](https://images91.fotosik.pl/243/b6da363b01d2cb83gen.jpg)
+![Image of Yaktocat](https://i.ibb.co/86XhRC9/ocena-piwa.png)
  
 ### Informacje o użytkowniku
  
-![Image of Yaktocat](https://images90.fotosik.pl/243/cf131334cea43fd7gen.jpg)
+![Image of Yaktocat](https://i.ibb.co/0sHskfJ/profil.png)
+
+### Wyszukiwanie piwa
+ 
+![Image of Yaktocat](https://i.ibb.co/gPN1kr5/wyszukiwanie-piwa.png)
